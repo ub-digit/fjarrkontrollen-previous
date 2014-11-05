@@ -1,0 +1,389 @@
+<div class="container">
+	<div id="topbar-single-order" class="row">
+		<div class="col-xs-12">
+			{{#link-to 'fjarr-in.index'}}<i class="fa fa-chevron-left"></i> Tillbaka{{/link-to}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="row" id="global-settings-order" {{bind-attr class="isEditingGlobalOrder:isEditing"}}>
+				<div class="col-xs-12"> 
+					<div id="global-settings-order-header" class="row">
+						<div class="col-xs-8">
+							<h2>{{order.orderNumber}}</h2> 
+						</div>
+						<div class="col-xs-4 single-order-toolbar" id="global-settings-order-actions">
+							{{#if isEditingGlobalOrder}}
+								<a href="#" class="pull-right" {{action 'saveGlobalOrderMetaData'}}> <i class="fa fa-check last"></i> </a>
+								<a href="#" class="pull-right" {{action 'resetGlobalMetaData'}}> <i class="fa fa-times"></i></a>
+								<a href="javascript:void();" class="pull-right"><i {{bind-attr id=order.id}} class="fa fa-spinner"></i></a>
+							{{else}}
+								<a href="#" class="pull-right" {{action 'enterGlobalEditMode'}}> <i class="fa fa-pencil last"></i> </a>
+							{{/if}}
+						</div>
+					</div> 
+					<form class="form-inline">
+						<h4>Handläggande enhet:</h4>
+						{{#if isEditingGlobalOrder}}
+							{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.location.id}}
+						{{else}}
+							{{order.location.nameSv}}
+						{{/if}}
+
+						<h4>Status: </h4> 
+						{{#if isEditingGlobalOrder}}
+							 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.status.id}}
+						{{else}}
+							{{order.status.nameSv}}
+						{{/if}}
+					</form>
+				</div>
+			</div>
+			<div class="row top-space-30">
+				<div class="col-xs-6">
+					<div class="row">
+						<div class="col-xs-8">
+							<h4>Orderkort</h4>
+						</div>
+						<div class="col-xs-4">
+							<form class="pull-right single-order-toolbar">
+								{{#if isEditingOrder}}
+									<a href="#" {{action 'saveOrder'}} {{bind-attr class=":pull-right"}}><i class="fa fa-check last"></i></a>
+									<a href="#" {{action 'resetOrder'}} {{bind-attr class=":pull-right"}}><i class="fa fa-times"></i> </a>
+								{{else}}
+									<a href="#" {{action 'enterOrderEditMode'}} class="pull-right"><i class="fa fa-pencil last"></i> </a>
+								{{/if}}
+							</form>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div {{bind-attr class="isEditingOrder:isEditing"}}>
+								<table class="table table-striped">
+									<tr  title="titel">
+										<th>Ti: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control input-sm" type="text" value=order.title}}
+											{{else}}
+												{{order.title}}
+											{{/if}}
+										</td>
+										
+									</tr>
+									<tr  title="författare">
+										<th>Fö: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.authors}}
+											{{else}}
+												{{order.authors}}
+											{{/if}}
+										</td>
+									</tr>
+
+									<tr  title="Leveransbibliotek">
+										<th>Levbib: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.deliveryPlace}}
+											{{else}}
+												{{order.deliveryPlace}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="ISSN / ISBN">
+										<th>IS/IB: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.issnIsbn}}
+											{{else}}
+												{{order.issnIsbn}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="ordertyp">
+										<th>Otyp: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.orderType.nameSv}}
+											{{else}}
+												{{order.orderType.nameSv}}
+											{{/if}}
+										</td>
+
+									</tr>
+									<tr  title="Volym">
+										<th>Vol: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.volume}}
+											{{else}}
+												{{order.volume}}
+											{{/if}}
+										</td>
+
+
+									</tr>
+									<tr  title="Publikationsår">
+										<th>Pub år: </th>
+										<td>								
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.publicationYear}}
+											{{else}}
+												{{order.publicationYear}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Nummer (issue)">
+										<th>Nr: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.issue}}
+											{{else}}
+												{{order.issue}}
+											{{/if}}
+										</td>
+
+									</tr>
+									<tr  title="Sidor">
+										<th>Sid: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.pages}}
+											{{else}}
+												{{order.pages}}
+											{{/if}}
+										</td>
+
+									</tr>
+									<tr  title="Titel">
+										<th>Ti: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.journalTitle}}
+											{{else}}
+												{{order.journalTitle}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Kopia">
+										<th>Kopia: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{view Ember.Select classNames="form-control" content=photocopiesIfLoanNotPossible optionValuePath="content.value" optionLabelPath="content.label" value=order.photocopiesIfLoanNotPossible}}
+											{{else}}
+												{{#if order.photocopiesIfLoanNotPossible}}
+													<i class="fa fa-check"></i>
+												{{else}}
+													<i class="fa fa-times"></i>
+												{{/if}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="utanför Norden (ej skandinavien)">
+										<th>Ut Nord: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{view Ember.Select classNames="form-control" content=orderOutsideScandinavia optionValuePath="content.value" optionLabelPath="content.label" value=order.orderOutsideScandinavia}}
+											{{else}}
+												{{#if order.orderOutsideScandinavia}}
+													<i class="fa fa-check"></i>
+												{{else}}
+													<i class="fa fa-times"></i>
+												{{/if}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="E-post konfirmation">
+										<th>E konf: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{view Ember.Select classNames="form-control" content=emailConfirmation optionValuePath="content.value" optionLabelPath="content.label" value=order.emailConfirmation}}
+											{{else}}
+												{{#if order.emailConfirmation}}
+													<i class="fa fa-check"></i>
+												{{else}}
+													<i class="fa fa-times"></i>
+												{{/if}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Önskas före">
+										<th>Ö före: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.notValidAfter}}
+											{{else}}
+												{{order.notValidAfter}}
+											{{/if}}
+
+										</td>
+							
+									</tr>
+									<tr  title="Prioritet">
+										<th>Prio: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.deliveryType}}
+											{{else}}
+												{{order.deliveryType}}
+											{{/if}}
+
+										</td>
+									</tr>
+								</table>
+							</div> <!-- end panel --> 
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="row">
+						<div class="col-xs-8">
+							<h4>Låntagare</h4>
+						</div>
+						<div class="col-xs-4">
+							<form class="pull-right single-order-toolbar">
+								{{#if isEditingCustomer}}
+									<a href="#" {{action 'saveCustomer'}} {{bind-attr class=":pull-right"}}><i class="fa fa-check last"></i></a>
+									<a href="#" {{action 'resetCustomer'}} {{bind-attr class=":pull-right"}}><i class="fa fa-times"></i> </a>
+								{{else}}
+									<a href="#" {{action 'enterCustomerEditMode'}} class="pull-right"><i class="fa fa-pencil last"></i> </a>
+								{{/if}}
+							</form>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div {{bind-attr class="isEditingCustomer:isEditing"}}>
+								<table class="table table-striped">
+									<tr title="Namn på kund">
+										<th>Namn: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.name}}</td>
+										{{else}}
+											<td>{{order.name}}</td>
+										{{/if}}
+									</tr>
+									<tr  title="Companyadress 1">
+										<th>comp 1: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.company1}}</td>
+										{{else}}
+											<td>{{order.company1}}</td>
+										{{/if}}
+									</tr>
+									<tr  title="Companyadress 2">
+										<th>comp 2: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.company2}}</td>
+										{{else}}
+											<td>{{order.company2}}</td>
+										{{/if}}
+										
+									</tr>
+									<tr  title="Companyadress 3">
+										<th>comp 3: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.company3}}</td>
+										{{else}}
+											<td>{{order.company3}}</td>
+										{{/if}}
+									</tr>
+									<tr  title="telefon">
+										<th>Tel: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.phoneNumber}}</td>
+										{{else}}
+											<td>{{order.phoneNumber}}</td>
+										{{/if}}
+										
+									</tr>
+									<tr  title="e-post">
+										<th>Epost: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.emailAddress}}</td>
+										{{else}}
+											<td>{{order.emailAddress}}</td>
+										{{/if}}
+									</tr>
+									<tr  title="Lånekortsnummer">
+										<th>Lk nr: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.libraryCardNumber}}</td>
+										{{else}}
+											<td>{{order.libraryCardNumber}}</td>
+										{{/if}}
+									</tr>
+									<tr  title="Kundtyp">
+										<th>Ktyp: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.customerType}}</td>
+										{{else}}
+											<td>{{order.customerType}}</td>
+										{{/if}}						
+									</tr>
+									<tr  title="kommentar">
+										<th>Komm: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.comments}}</td>
+										{{else}}
+											<td>{{order.comments}}</td>
+										{{/if}}								
+									</tr>
+									<tr  title="formulär språk">
+										<th>F språk: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.formLang}}</td>
+										{{else}}
+											<td>{{order.formLang}}</td>
+										{{/if}}			
+									</tr>
+									<tr  title="fakturanamn">
+										<th>Fa namn: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
+										{{else}}
+											<td>{{order.invoicingName}}</td>
+										{{/if}}							
+									</tr>
+									<tr  title="fakturaadress">
+										<th>Fa adr: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingAddress}}</td>
+										{{else}}
+											<td>{{order.invoicingAddress}}</td>
+										{{/if}}		
+									</tr>
+									<tr  title="Invoicing postal adress">
+										<th>I p a: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress1}}</td>
+										{{else}}
+											<td>{{order.invoicingPostalAddress1}}</td>
+										{{/if}}								
+									</tr>
+									<tr>
+										<th>I p a 1: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress2}}</td>
+										{{else}}
+											<td>{{order.invoicingPostalAddress2}}</td>
+										{{/if}}								
+									</tr>
+								</table>
+							</div> <!-- end panel -->
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			{{view "correspondence"}}
+		</div>
+	</div>
+</div>
+
+
+{{outlet}}

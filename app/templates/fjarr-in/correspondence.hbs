@@ -1,0 +1,91 @@
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<section id="feedback">
+							<div class="col-xs-12">
+								<div id="correspondense">
+									<h4>Meddelanden & anteckningar</h4>
+								</div>
+							</div>
+							<div {{bind-attr class=":col-xs-12 isNewMessageVisible:hidden isNewNoteVisible:hidden"}}>
+								<button class="btn btn-default" {{action 'showCreateNewEmailMessage'}}>Nytt meddelande <i class="fa fa-envelope-o"></i></button>
+								<button {{action 'showCreateNewNote'}} class="btn btn-default">Ny anteckning <i class="fa fa-file-text-o"></i></button>
+							</div>
+							<div class="col-xs-12">
+								<div id="new-message" {{bind-attr class="isNewMessageVisible:visible"}}>
+									<a class="pull-right" {{action 'hideCreateNewEmailMessage'}} href="javascript:void()"><i class="fa fa-times"></i></a>
+									<form class="form">
+										<div class="form-group">
+											{{view Ember.Select classNames="form-control" viewName="select-standard-answer"
+							                    content=controllers.application.email_template
+							                    optionLabelPath="content.subjectSv"
+							                    optionValuePath="content.id"
+							                    prompt="Välj standardsvar:"
+                								selection=selectedAnswer
+                							}}
+										</div>
+										<div class="form-group">
+											<label class="sr-only">Rubrik:</label>
+											{{input classNames="form-control" placeholder="rubrik" valueBinding="emailmessage.subject"}}
+										
+										</div>
+										
+										<div class="form-group">
+											<label class="sr-only">Meddelande:</label>
+											{{view Ember.TextArea placeholder="skriv ditt mejl här..." classNames="form-control" valueBinding="emailmessage.body" rows=10}}
+										</div>
+										<div class="form-group">
+											<button id="email-submit" class="disabled btn btn-default pull-right" {{action 'createNewEmailMessage' order.id true}}type="submit">Skicka</button>
+										</div>
+									</form>
+	  							</div>
+
+	  							<div id="new-note" {{bind-attr class="isNewNoteVisible:visible"}}>
+	  								<a class="pull-right" {{action 'hideCreateNewNote'}} href="javascript:void()"><i class="fa fa-times"></i></a>
+									<form class="form">
+										<div class="form-group">
+											<label class="sr-only">Meddelande:</label>
+											{{view Ember.TextArea placeholder="skriv din anteckning här..." classNames="form-control" valueBinding="message" rows=10}}
+										</div>
+										<div class="form-group">
+											<button id="notes-submit" class="disabled btn btn-default pull-right" {{action 'createNewMessage' order.id false}} type="submit">Skicka</button>
+										</div>	
+									</form>
+								</div>
+		  					</div>
+						</section>
+					</div>
+					<div class="row top-space-30">
+						<section id="history">
+
+							<div class="col-xs-12">
+								{{#each item in notesSorted}}
+								<div class="well">
+									<div class="row">
+										<div class="history-header col-xs-12">
+											{{#if item.isEmail}}
+												<i class="fa fa-envelope-o"></i>
+											{{else}}
+												<i class="fa fa-file-text-o"></i>
+											{{/if}}
+											<strong> {{format-date item.createdAt}}</strong> av <strong>{{item.userId}}</strong>
+										</div>
+										<div class="history-body col-xs-12">
+											{{#if item.subject}}
+												<p><strong>Ämne: </strong> {{item.subject}}</p>
+											{{/if}}
+											<p> 
+											{{item.message}}
+											</p>
+										</div>
+									</div>
+								</div>
+								{{/each}}
+							</div>
+							<!-- looopa ut meddalenden och epost grejer här --> 
+
+						</section>
+
+					</div>
+				</div>
+			</div>

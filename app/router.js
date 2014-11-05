@@ -6,6 +6,14 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource('fjarr-in', function() {
+	this.route('list');
+	this.route('post',  {path: ":id"});
+  });
+  this.route('fjarr-ut', function() {
+
+  });
+
 });
 
 export default Router;
