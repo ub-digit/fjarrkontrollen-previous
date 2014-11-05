@@ -14,6 +14,7 @@ Router.map(function() {
 
   });
 
+  this.resource('login');
 });
 
 export default Router;

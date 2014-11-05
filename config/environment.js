@@ -26,6 +26,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.serviceURL = 'http://fjarrkontrollen-server-test.ub.gu.se';
+    ENV.contentSecurityPolicyHeader = 'Disabled-Content-Security-Policy';
+    ENV.APP.authenticationBaseURL = 'http://fjarrkontrollen-server-test.ub.gu.se/session';
 
   }
 
