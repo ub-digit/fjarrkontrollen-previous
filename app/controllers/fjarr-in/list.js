@@ -33,10 +33,6 @@ export default Ember.Controller.extend({
 	currentLocation: 1,
 	currentStatus: 1,
 
-	init: function() {
-
-
-	},
 
 	updateDisabledStatusOnOrderType: function() {
 		if (this.get('loan.active') && (this.get('copy.active'))) {
@@ -106,7 +102,7 @@ export default Ember.Controller.extend({
 			this.turnOnLoading(orderNumber);
 			var self = this;
 			this.store.find("order", orderNumber).then(function(item) {
-				item.set("user", null);
+				item.set("userId", null);
 				var onError = function(error) {
 					console.log(error);
 				};
@@ -122,11 +118,11 @@ export default Ember.Controller.extend({
 		},
 
 
-		switchOwner: function(orderNumber, NewUser) {
+		switchOwner: function(orderNumber, newUserId) {
 			this.turnOnLoading(orderNumber);
 			var self = this;
 			this.store.find("order", orderNumber).then(function(item) {
-				item.set("user", NewUser);
+				item.set("userId", newUserId);
 
 				var onError = function(error) {
 					console.log(error);

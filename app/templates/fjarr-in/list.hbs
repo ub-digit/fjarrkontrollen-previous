@@ -1,4 +1,5 @@
 
+{{session.name}}
 <div class="container">
 	<div class="row">
 		<div class="col-xs-2">
@@ -60,14 +61,14 @@
 					    			<td>{{item.formLibrary}}</td>
 									<td>{{item.status.nameSv}}</td>
 									<td>
-										{{#if item.user.xkonto }}
+										{{#if item.userId }}
 											<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>
 											<div class="btn-group">
 											  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-											    {{item.user.xkonto}} <span class="caret"></span>
+											    {{item.userId}} <span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu" role="menu">
-											    <li><a href="#" {{action 'switchOwner' item.id controllers.application.currentUser}} {{controllers.application.currentUser.xkonto}}</a>
+											    <li><a href="#" {{action 'switchOwner' item.id session.userid}} {{session.name}}</a>
 											   	</li>
 											    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>	
 											  </ul>
@@ -79,7 +80,7 @@
 											     Ingen <span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu" role="menu">
-											    <li><a {{action 'switchOwner' item.id controllers.application.currentUser}} href="#"> {{controllers.application.currentUser.xkonto}}</a></li>
+											    <li><a {{action 'switchOwner' item.id session.userid}} href="#"> {{session.name}}</a></li>
 											    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>		
 											  </ul>
 											</div>

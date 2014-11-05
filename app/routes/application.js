@@ -14,7 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		});
 	},
 	setupController: function(controller, models) {
-		controller.set('currentUser',models.currentUser);
+		//controller.set('currentUser',models.currentUser);
 		controller.set('defaultLocation', '1');
 		controller.set('defaultStatus', 0);
 		controller.set('locations', models.locations);

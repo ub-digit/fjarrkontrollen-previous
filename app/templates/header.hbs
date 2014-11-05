@@ -15,5 +15,19 @@
 				</div>
 			</div>
 		</div>
+
+      {{#if session.isAuthenticated}}
+      <p class="navbar-text">Logged in as {{session.name}}</p>
+
+        <a href="javascript:void(0)" {{action 'invalidateSession'}}>Logout</a>
+
+      {{else}}
+
+	{{link-to "Login" 'login'}}
+
+     {{/if}}
 	</div>
+
+
+
 </header>

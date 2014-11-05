@@ -21,7 +21,7 @@ var CustomAuthenticator = Base.extend({
 			type: 'POST',
 			url: ENV.APP.authenticationBaseURL,
 			data: JSON.stringify({
-			    username: credentials.identification,
+			    xkonto: credentials.identification,
 			    password: credentials.password
 			}),
 			contentType: 'application/json'
@@ -31,7 +31,8 @@ var CustomAuthenticator = Base.extend({
 			    resolve({
 				authenticated: true,
 				token: token,
-				username: response.user.username,
+				username: response.user.xkonto,
+				userid: response.user.id,
 				name: response.user.name
 			    });
 			});
