@@ -60,8 +60,8 @@
 						<div class="col-xs-12">
 							<div {{bind-attr class="isEditingOrder:isEditing"}}>
 								<table class="table table-striped">
-									<tr  title="titel">
-										<th>Ti: </th>
+									<tr  title="Titel">
+										<th>Titel: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control input-sm" type="text" value=order.title}}
@@ -71,8 +71,28 @@
 										</td>
 										
 									</tr>
-									<tr  title="författare">
-										<th>Fö: </th>
+									<tr  title="Libris LF Number">
+										<th>Libris LF Number: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.librisLfNumber}}
+											{{else}}
+												{{order.librisLfNumber}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Libris Request Id">
+										<th>Libris Request Id: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.librisRequestId}}
+											{{else}}
+												{{order.librisRequestId}}
+											{{/if}}
+										</td>
+									</tr>									
+									<tr  title="Författare">
+										<th>Författare: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.authors}}
@@ -82,8 +102,8 @@
 										</td>
 									</tr>
 
-									<tr  title="Leveransbibliotek">
-										<th>Levbib: </th>
+									<tr  title="Leveransalternativ">
+										<th>Leveransalternativ: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.deliveryPlace}}
@@ -92,8 +112,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="ISSN / ISBN">
-										<th>IS/IB: </th>
+									<tr  title="ISSN/ISBN">
+										<th>ISSN/ISBN: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.issnIsbn}}
@@ -102,8 +122,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="ordertyp">
-										<th>Otyp: </th>
+									<tr  title="Beställningstyp">
+										<th>Beställningstyp: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.orderType.nameSv}}
@@ -114,7 +134,7 @@
 
 									</tr>
 									<tr  title="Volym">
-										<th>Vol: </th>
+										<th>Volym: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.volume}}
@@ -125,8 +145,8 @@
 
 
 									</tr>
-									<tr  title="Publikationsår">
-										<th>Pub år: </th>
+									<tr  title="Publiceringsår">
+										<th>Publiceringsår: </th>
 										<td>								
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.publicationYear}}
@@ -135,8 +155,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="Nummer (issue)">
-										<th>Nr: </th>
+									<tr  title="Nummer">
+										<th>Nummer: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.issue}}
@@ -147,7 +167,7 @@
 
 									</tr>
 									<tr  title="Sidor">
-										<th>Sid: </th>
+										<th>Sidor: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.pages}}
@@ -157,8 +177,8 @@
 										</td>
 
 									</tr>
-									<tr  title="Titel">
-										<th>Ti: </th>
+									<tr  title="Tidskriftstitel">
+										<th>Tidskriftstitel: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.journalTitle}}
@@ -167,8 +187,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="Kopia">
-										<th>Kopia: </th>
+									<tr  title="Kopior om ej lån">
+										<th>Kopior om ej lån: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{view Ember.Select classNames="form-control" content=photocopiesIfLoanNotPossible optionValuePath="content.value" optionLabelPath="content.label" value=order.photocopiesIfLoanNotPossible}}
@@ -181,8 +201,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="utanför Norden (ej skandinavien)">
-										<th>Ut Nord: </th>
+									<tr  title="Utanför Norden">
+										<th>Utanför Norden: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{view Ember.Select classNames="form-control" content=orderOutsideScandinavia optionValuePath="content.value" optionLabelPath="content.label" value=order.orderOutsideScandinavia}}
@@ -195,8 +215,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="E-post konfirmation">
-										<th>E konf: </th>
+									<tr  title="E-postkvittens">
+										<th>E-postkvittens: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{view Ember.Select classNames="form-control" content=emailConfirmation optionValuePath="content.value" optionLabelPath="content.label" value=order.emailConfirmation}}
@@ -209,8 +229,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="Önskas före">
-										<th>Ö före: </th>
+									<tr  title="Ej aktuell efter">
+										<th>Ej aktuell efter: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.notValidAfter}}
@@ -221,8 +241,8 @@
 										</td>
 							
 									</tr>
-									<tr  title="Prioritet">
-										<th>Prio: </th>
+									<tr  title="Handläggning">
+										<th>Handläggning: </th>
 										<td>
 											{{#if isEditingOrder}}
 												{{input classNames="form-control" type="text" value=order.deliveryType}}
@@ -257,7 +277,7 @@
 						<div class="col-xs-12">
 							<div {{bind-attr class="isEditingCustomer:isEditing"}}>
 								<table class="table table-striped">
-									<tr title="Namn på kund">
+									<tr title="Namn">
 										<th>Namn: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.name}}</td>
@@ -265,16 +285,16 @@
 											<td>{{order.name}}</td>
 										{{/if}}
 									</tr>
-									<tr  title="Companyadress 1">
-										<th>comp 1: </th>
+									<tr  title="Adress 1">
+										<th>Adress: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.company1}}</td>
 										{{else}}
 											<td>{{order.company1}}</td>
 										{{/if}}
 									</tr>
-									<tr  title="Companyadress 2">
-										<th>comp 2: </th>
+									<tr  title="Adress 2">
+										<th></th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.company2}}</td>
 										{{else}}
@@ -282,16 +302,16 @@
 										{{/if}}
 										
 									</tr>
-									<tr  title="Companyadress 3">
-										<th>comp 3: </th>
+									<tr  title="Adress 3">
+										<th></th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.company3}}</td>
 										{{else}}
 											<td>{{order.company3}}</td>
 										{{/if}}
 									</tr>
-									<tr  title="telefon">
-										<th>Tel: </th>
+									<tr  title="Telefon">
+										<th>Telefon: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.phoneNumber}}</td>
 										{{else}}
@@ -299,8 +319,8 @@
 										{{/if}}
 										
 									</tr>
-									<tr  title="e-post">
-										<th>Epost: </th>
+									<tr  title="E-post">
+										<th>E-post: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.emailAddress}}</td>
 										{{else}}
@@ -308,7 +328,7 @@
 										{{/if}}
 									</tr>
 									<tr  title="Lånekortsnummer">
-										<th>Lk nr: </th>
+										<th>Lånekortsnummer: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.libraryCardNumber}}</td>
 										{{else}}
@@ -316,55 +336,55 @@
 										{{/if}}
 									</tr>
 									<tr  title="Kundtyp">
-										<th>Ktyp: </th>
+										<th>Kundtyp: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.customerType}}</td>
 										{{else}}
 											<td>{{order.customerType}}</td>
 										{{/if}}						
 									</tr>
-									<tr  title="kommentar">
-										<th>Komm: </th>
+									<tr  title="Kommentar">
+										<th>Kommentar: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.comments}}</td>
 										{{else}}
 											<td>{{order.comments}}</td>
 										{{/if}}								
 									</tr>
-									<tr  title="formulär språk">
-										<th>F språk: </th>
+									<tr  title="Språk i formulär">
+										<th>Språk i formulär: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.formLang}}</td>
 										{{else}}
 											<td>{{order.formLang}}</td>
 										{{/if}}			
 									</tr>
-									<tr  title="fakturanamn">
-										<th>Fa namn: </th>
+									<tr  title="Namn, faktura">
+										<th>Namn, faktura: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
 										{{else}}
 											<td>{{order.invoicingName}}</td>
 										{{/if}}							
 									</tr>
-									<tr  title="fakturaadress">
-										<th>Fa adr: </th>
+									<tr  title="Adress, faktura">
+										<th>Adress, faktura: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.invoicingAddress}}</td>
 										{{else}}
 											<td>{{order.invoicingAddress}}</td>
 										{{/if}}		
 									</tr>
-									<tr  title="Invoicing postal adress">
-										<th>I p a: </th>
+									<tr  title="Postadress 1, faktura">
+										<th>Postadress, faktura: </th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress1}}</td>
 										{{else}}
 											<td>{{order.invoicingPostalAddress1}}</td>
 										{{/if}}								
 									</tr>
-									<tr>
-										<th>I p a 1: </th>
+									<tr   title="Postadress 2, faktura">
+										<th></th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress2}}</td>
 										{{else}}
