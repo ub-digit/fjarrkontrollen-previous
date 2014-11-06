@@ -5,15 +5,14 @@ export default Ember.Controller.extend({
 
 	/* setup for filter params to server */
 	filterToServer: {
-		location: 1,
+		currentLocation: 1,
 		status: 1,
 		mediaType: [1,2],
 		user: null,
-		sortOrder: 1
+		sortfield: 'title',
+		sortDir: 'ASC',
 	},
 	
-	
-	sortOrder: 1,
 	/* filter for interface */
 	// loan
 	loan: {
@@ -31,6 +30,24 @@ export default Ember.Controller.extend({
 		id: 1
 	},
 
+	sortCols: {
+		ordernumber: {id:1, active: true, sortDir: 'ASC'},
+		customer: {id:2, active: false, sortDir: 'ASC'},
+		type: {id:3, active: false, sortDir: 'ASC'},
+		title: {id:3, active: false, sortDir: 'ASC'},
+		status:{id:3, active: false, sortDir: 'ASC'}
+	},
+
+	sortWatch: function(sortObject) {
+		if (sortObject.active) {
+			if (sortObject.sortDir === 'ASC') {
+				sortObject.set('sortDir', 'DESC');
+			}
+			else {
+				sortObject.set("sortDir", 'ASC');
+			}
+		}
+	},
 	updateDisabledStatusOnOrderType: function() {
 		if (this.get('loan.active') && (this.get('copy.active'))) {
 			this.set('loan.disabled', false);
@@ -117,6 +134,10 @@ export default Ember.Controller.extend({
 			});
 		},
 
+		sortMe: function() {
+			alert("sort");
+		}, 
+
 
 		switchOwner: function(orderNumber, newUserId) {
 			this.turnOnLoading(orderNumber);
@@ -137,7 +158,7 @@ export default Ember.Controller.extend({
 		},
 		setFolder: function(id) {
 			this.folder.forEach(function(item, index) {
-				item.set("active",false)
+				item.set("active",false);
 			});
 
 			var clickedFolder = this.folder.find(function(item, index) {

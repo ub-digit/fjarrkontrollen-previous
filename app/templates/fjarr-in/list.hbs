@@ -40,12 +40,15 @@
 				{{#if model}}
 					<table class="table table-striped table-condensed">
 				    	<tr>
-					    	<th>Ordernummer</th>
-					    	<th>Låntagare</th>
-					    	<th>Typ</th>
-					    	<th>Titel</th>
-					    	<th>Bibliotek</th>
-					    	<th>Status</th>
+					    	<th {{bind-attr class="sortCols.ordernumber.active:active"}}><a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
+					    	{{#if sortCols.ordernumber.active}}
+					    		{{sortCols.ordernumber.sortDir}}
+					    	{{/if}}
+					    	<th {{bind-attr class="sortCols.customer.active:active"}}>Låntagare</th>
+					    	<th {{bind-attr class="sortCols.type.active:active"}}>Typ</th>
+					    	<th {{bind-attr class="sortCols.title.active:active"}}>Titel</th>
+					    	<!--<th>Bibliotek</th>-->
+					    	<th {{bind-attr class="sortCols.status.active:active"}}>Status</th>
 					    	<th>Handläggare</th>	
 				    	</tr>
 						{{#each item in model}}
@@ -53,11 +56,11 @@
 					    			<td>{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} </td>
 					    			<td>{{item.name}}</td>
 					    			<td>
-					    			  {{item.orderType.nameSv}}
+					    			  {{ordertype-name item.orderTypeId}}
 					    			</td>
 					    			<td>{{trim-string item.title}}</td>
-					    			<td>{{item.formLibrary}}</td>
-									<td>{{item.status.nameSv}}</td>
+					    			<!--<td>{{item.formLibrary}}</td>-->
+									<td>{{status-name item.statusId}}</td>
 									<td>
 										{{#if item.userId }}
 											<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>

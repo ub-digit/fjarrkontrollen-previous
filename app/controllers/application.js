@@ -10,5 +10,8 @@ export default Ember.Controller.extend({
 	},
 	getStatusObject: function(id) {
 		return this.get("statuses").findBy('idInt', parseInt(id));	
+	},
+	getOrderTypeObject: function(id) {
+		return this.get("ordertypes").findBy('idInt', parseInt(id));
 	}
 });

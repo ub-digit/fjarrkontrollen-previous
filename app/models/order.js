@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  	orderTypeId 					    : 		DS.belongsTo('order-type', {async:true}),
+  	orderTypeId 					    : 		DS.attr('string'),
 	title 								: 		DS.attr('string'),
 	publicationYear 					: 		DS.attr('string'),
 	volume 								: 		DS.attr('string'),
