@@ -30,9 +30,6 @@ export default Ember.Controller.extend({
 		name: 'Kopia',
 		id: 1
 	},
-	currentLocation: 1,
-	currentStatus: 1,
-
 
 	updateDisabledStatusOnOrderType: function() {
 		if (this.get('loan.active') && (this.get('copy.active'))) {
@@ -50,7 +47,6 @@ export default Ember.Controller.extend({
 	}.observes('loan.active', 'copy.active'),
 
 	triggerFilter : function() {
-	console.log(this.get("controllers.application.currentUser.id"));
 		this.filterToServer.mediaType = [];
 		if (this.get("loan.active")) {
 			this.filterToServer.mediaType.push(this.get("loan.id"));
@@ -67,7 +63,11 @@ export default Ember.Controller.extend({
 		if (this.currentLocation) {
 			this.set("filterToServer.currentLocation",this.currentLocation);
 		}
-		if (this.currentStatus) {
+		
+		if (this.currentStatus === '0') {
+			this.set("filterToServer.status", "");
+		}
+		else {
 			this.set("filterToServer.status", this.get('currentStatus'));
 		}
 

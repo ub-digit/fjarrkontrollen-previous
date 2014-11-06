@@ -157,7 +157,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 		createNewMessage: function(orderId, email) {
 			//var user = this.get("controllers.application.currentUser.id");
 			var post = this.store.createRecord('note', {
-			 		orderId: orderId, userId: this.get("controllers.application.currentUser.id"), message: this.get("message"), isEmail: email
+			 		orderId: orderId, userId: this.get("session").get("userid"), message: this.get("message"), isEmail: email
 			})
 
 
@@ -179,7 +179,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 		},
 		createNewEmailMessage: function(orderId, email) {
 			var post = this.store.createRecord('note', {
-				orderId: orderId, userId: this.get("controllers.application.currentUser.id"), subject: this.get("emailmessage.subject"), message: this.get("emailmessage.body"), isEmail: email			});
+				orderId: orderId, userId: this.get("session").get("userid"), subject: this.get("emailmessage.subject"), message: this.get("emailmessage.body"), isEmail: email			});
 			var that = this;
 			var onSuccess = function() {
 				that.set("controllers.application.message", "Ditt mejl har sparats och kommer att skickas");

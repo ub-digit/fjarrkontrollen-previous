@@ -68,7 +68,7 @@
 											{{else}}
 												<i class="fa fa-file-text-o"></i>
 											{{/if}}
-											<strong> {{format-date item.createdAt}}</strong> av <strong>{{item.userId}}</strong>
+											<strong> {{format-date item.createdAt}}</strong> av <strong>{{user-name item.userId}}</strong>
 										</div>
 										<div class="history-body col-xs-12">
 											{{#if item.subject}}

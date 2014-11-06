@@ -25,16 +25,16 @@
 					<form class="form-inline">
 						<h4>Handläggande enhet:</h4>
 						{{#if isEditingGlobalOrder}}
-							{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.location.id}}
+							{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.locationId}}
 						{{else}}
-							{{order.location.nameSv}}
+							{{location-name order.locationId}}
 						{{/if}}
 
 						<h4>Status: </h4> 
 						{{#if isEditingGlobalOrder}}
-							 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.status.id}}
+							 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId}}
 						{{else}}
-							{{order.status.nameSv}}
+							{{status-name order.statusId}}
 						{{/if}}
 					</form>
 				</div>

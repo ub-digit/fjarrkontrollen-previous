@@ -31,6 +31,7 @@ var CustomAuthenticator = Base.extend({
 			    resolve({
 				authenticated: true,
 				token: token,
+				userLocationId: response.user.location_id,
 				username: response.user.xkonto,
 				userid: response.user.id,
 				name: response.user.name
