@@ -52,10 +52,24 @@
 						    		{{sortCols.customer.sortDir}}
 						    	{{/if}}
 					    	</th>
-					    	<th {{bind-attr class="sortCols.type.active:active"}}>Typ</th>
-					    	<th {{bind-attr class="sortCols.title.active:active"}}>Titel</th>
-					    	<!--<th>Bibliotek</th>-->
-					    	<th {{bind-attr class="sortCols.status.active:active"}}>Status</th>
+					    	<th {{bind-attr class="sortCols.type.active:active"}}>
+					    		<a href="javascript:void();" {{action 'sortMe' sortCols.type}}>Typ</a>
+								{{#if sortCols.type.active}}
+						    		{{sortCols.type.sortDir}}
+						    	{{/if}}
+					    	</th>
+					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
+					    		<a href="javascript:void();" {{action 'sortMe' sortCols.title}}>Titel</a>
+								{{#if sortCols.title.active}}
+						    		{{sortCols.title.sortDir}}
+						    	{{/if}}
+					    	</th>
+					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
+					    		<a href="javascript:void();" {{action 'sortMe' sortCols.status}}>Status</a>
+								{{#if sortCols.status.active}}
+						    		{{sortCols.status.sortDir}}
+						    	{{/if}}
+					    	</th>
 					    	<th>Handläggare</th>	
 				    	</tr>
 						{{#each item in model}}
