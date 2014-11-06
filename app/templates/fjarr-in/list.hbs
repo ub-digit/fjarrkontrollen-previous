@@ -40,11 +40,18 @@
 				{{#if model}}
 					<table class="table table-striped table-condensed">
 				    	<tr>
-					    	<th {{bind-attr class="sortCols.ordernumber.active:active"}}><a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
-					    	{{#if sortCols.ordernumber.active}}
-					    		{{sortCols.ordernumber.sortDir}}
-					    	{{/if}}
-					    	<th {{bind-attr class="sortCols.customer.active:active"}}>Låntagare</th>
+					    	<th {{bind-attr class="sortCols.ordernumber.active:active"}}>
+					    		<a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
+						    	{{#if sortCols.ordernumber.active}}
+						    		{{sortCols.ordernumber.sortDir}}
+						    	{{/if}}
+					    	</th>
+					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
+					    		<a href="javascript:void();" {{action 'sortMe' sortCols.customer}}>Låntagare</a>
+								{{#if sortCols.customer.active}}
+						    		{{sortCols.customer.sortDir}}
+						    	{{/if}}
+					    	</th>
 					    	<th {{bind-attr class="sortCols.type.active:active"}}>Typ</th>
 					    	<th {{bind-attr class="sortCols.title.active:active"}}>Titel</th>
 					    	<!--<th>Bibliotek</th>-->

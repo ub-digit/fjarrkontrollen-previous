@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 		mediaType: [1,2],
 		user: null,
 		sortfield: 'title',
-		sortDir: 'ASC',
+		sortdir: 'ASC',
 	},
 	
 	/* filter for interface */
@@ -31,23 +31,14 @@ export default Ember.Controller.extend({
 	},
 
 	sortCols: {
-		ordernumber: {id:1, active: true, sortDir: 'ASC'},
-		customer: {id:2, active: false, sortDir: 'ASC'},
-		type: {id:3, active: false, sortDir: 'ASC'},
-		title: {id:3, active: false, sortDir: 'ASC'},
-		status:{id:3, active: false, sortDir: 'ASC'}
+		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'ASC'}),
+		customer: Ember.Object.create({id:2, sortfield: "name", active: false, sortDir: 'ASC'}),
+		type: Ember.Object.create({id:3,sortfield: 'order_type_id' ,active: false, sortDir: 'ASC'}),
+		title: Ember.Object.create({id:3, sortfield: 'title', active: false, sortDir: 'ASC'}),
+		status: Ember.Object.create({id:3, active: false, sortfield: 'status_id', sortDir: 'ASC'})
 	},
 
-	sortWatch: function(sortObject) {
-		if (sortObject.active) {
-			if (sortObject.sortDir === 'ASC') {
-				sortObject.set('sortDir', 'DESC');
-			}
-			else {
-				sortObject.set("sortDir", 'ASC');
-			}
-		}
-	},
+
 	updateDisabledStatusOnOrderType: function() {
 		if (this.get('loan.active') && (this.get('copy.active'))) {
 			this.set('loan.disabled', false);
@@ -91,10 +82,11 @@ export default Ember.Controller.extend({
 
 
 
+
 		this.convertFilterVars();
 		this.transitionToRoute("fjarr-in.index");
 		console.log("currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status: " + this.filterToServer.status + " sortOrder: " + this.sortOrder);
-	}.observes('folder.@each.active','loan.active', 'currentLocation', 'copy.active', 'currentStatus', 'sortOrder'),
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','loan.active', 'currentLocation', 'copy.active', 'currentStatus', 'sortOrder'),
 	
 
 	convertFilterVars: function() {
@@ -134,8 +126,32 @@ export default Ember.Controller.extend({
 			});
 		},
 
-		sortMe: function() {
-			alert("sort");
+		sortMe: function(sortObject) {
+			if (sortObject.active) {
+				if (sortObject.sortDir === 'ASC') {
+					sortObject.set('sortDir', 'DESC');
+					this.set('filterToServer.sortdir', 'DESC');
+				}
+				else {
+					sortObject.set("sortDir", 'ASC');
+					this.set('filterToServer.sortdir', 'ASC');
+				}
+			}
+			else {
+				// reset all 
+				this.set("sortCols.ordernumber.active", false);
+				this.set("sortCols.customer.active", false);
+				this.set("sortCols.type.active", false);
+				this.set("sortCols.title.active", false);
+				this.set("sortCols.status.active", false);
+
+				sortObject.set("active", true);
+				this.set('filterToServer.sortfield', sortObject.get("sortfield"));
+				sortObject.set("sortDir", 'ASC');
+				this.set('filterToServer.sortdir', 'ASC');
+			}
+
+			this.triggerFilter();
 		}, 
 
 
