@@ -17,11 +17,10 @@
 						</div>
 						<div class="col-xs-4 single-order-toolbar" id="global-settings-order-actions">
 							{{#if isEditingGlobalOrder}}
-								<a href="#" class="pull-right" {{action 'saveGlobalOrderMetaData'}}> <i class="fa fa-check last"></i> </a>
-								<a href="#" class="pull-right" {{action 'resetGlobalMetaData'}}> <i class="fa fa-times"></i></a>
-								<a href="javascript:void();" class="pull-right"><i {{bind-attr id=order.id}} class="fa fa-spinner"></i></a>
+								<a href="#" class="btn btn-default btn-sm pull-right" {{action 'saveGlobalOrderMetaData'}}><i class="fa fa-check last"></i> Spara</a>
+								<a href="#" class="pull-right btn btn-sm btn-default" {{action 'resetGlobalMetaData'}}><i class="fa fa-times"></i> Stäng</a>
 							{{else}}
-								<a href="#" class="pull-right" {{action 'enterGlobalEditMode'}}> <i class="fa fa-pencil last"></i> </a>
+								<a href="#" class="pull-right btn btn-sm btn-default" {{action 'enterGlobalEditMode'}}><i class="fa fa-pencil last"></i> Editera</a>
 							{{/if}}
 						</div>
 					</div> 
@@ -45,16 +44,16 @@
 			<div class="row top-space-30">
 				<div class="col-xs-6">
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-4">
 							<h4>Orderkort</h4>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-8">
 							<form class="pull-right single-order-toolbar">
 								{{#if isEditingOrder}}
-									<a href="#" {{action 'saveOrder'}} {{bind-attr class=":pull-right"}}><i class="fa fa-check last"></i></a>
-									<a href="#" {{action 'resetOrder'}} {{bind-attr class=":pull-right"}}><i class="fa fa-times"></i> </a>
+									<a href="#" {{action 'saveOrder'}} {{bind-attr class=":btn :btn-default :btn-sm :btn-sm :btn-sm :btn-sm :pull-right"}}><i class="fa fa-check last"></i> Spara</a>
+									<a href="#" {{action 'resetOrder'}} {{bind-attr class=":btn :btn-default :btn-sm :btn-sm :btn-sm :btn-sm :pull-right"}}><i class="fa fa-times"></i> Stäng</a>
 								{{else}}
-									<a href="#" {{action 'enterOrderEditMode'}} class="pull-right"><i class="fa fa-pencil last"></i> </a>
+									<a href="#" {{action 'enterOrderEditMode'}} class="btn btn-default btn-sm pull-right"><i class="fa fa-pencil last"></i> Editera</a>
 								{{/if}}
 							</form>
 						</div>
@@ -282,16 +281,16 @@
 				</div>
 				<div class="col-xs-6">
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-4">
 							<h4>Låntagare</h4>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-8">
 							<form class="pull-right single-order-toolbar">
 								{{#if isEditingCustomer}}
-									<a href="#" {{action 'saveCustomer'}} {{bind-attr class=":pull-right"}}><i class="fa fa-check last"></i></a>
-									<a href="#" {{action 'resetCustomer'}} {{bind-attr class=":pull-right"}}><i class="fa fa-times"></i> </a>
+									<a href="#" {{action 'saveCustomer'}} {{bind-attr class=":btn :btn-default :btn-sm :btn-sm :btn-sm :btn-sm :pull-right"}}><i class="fa fa-check last"></i> Spara</a>
+									<a href="#" {{action 'resetCustomer'}} {{bind-attr class=":btn :btn-default :btn-sm :btn-sm :btn-sm :btn-sm :pull-right"}}><i class="fa fa-times"></i> Stäng</a>
 								{{else}}
-									<a href="#" {{action 'enterCustomerEditMode'}} class="pull-right"><i class="fa fa-pencil last"></i> </a>
+									<a href="#" {{action 'enterCustomerEditMode'}} class="btn btn-default btn-sm pull-right"><i class="fa fa-pencil last"></i> Editera</a>
 								{{/if}}
 							</form>
 						</div>
