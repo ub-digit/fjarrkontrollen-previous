@@ -43,31 +43,31 @@
 					    	<th {{bind-attr class="sortCols.ordernumber.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
 						    	{{#if sortCols.ordernumber.active}}
-						    		{{sortCols.ordernumber.sortDir}}
+						    		{{get-sort-dir-arrow sortCols.ordernumber.sortDir}}
 						    	{{/if}}
 					    	</th>
 					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.customer}}>Låntagare</a>
 								{{#if sortCols.customer.active}}
-						    		{{sortCols.customer.sortDir}}
+						    		{{get-sort-dir-arrow sortCols.customer.sortDir}}
 						    	{{/if}}
 					    	</th>
 					    	<th {{bind-attr class="sortCols.type.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.type}}>Typ</a>
 								{{#if sortCols.type.active}}
-						    		{{sortCols.type.sortDir}}
+						    		{{get-sort-dir-arrow sortCols.type.sortDir}}
 						    	{{/if}}
 					    	</th>
 					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.title}}>Titel</a>
 								{{#if sortCols.title.active}}
-						    		{{sortCols.title.sortDir}}
+						    		{{get-sort-dir-arrow sortCols.title.sortDir}}
 						    	{{/if}}
 					    	</th>
 					    	<th {{bind-attr class="sortCols.customer.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.status}}>Status</a>
 								{{#if sortCols.status.active}}
-						    		{{sortCols.status.sortDir}}
+						    		{{get-sort-dir-arrow sortCols.status.sortDir}}
 						    	{{/if}}
 					    	</th>
 					    	<th>Handläggare</th>	
