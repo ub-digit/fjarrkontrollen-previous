@@ -39,4 +39,6 @@ export default DS.Model.extend({
 	statusId							: 		DS.attr('string'),
 	librisLfNumber						: 		DS.attr('string'),
 	librisRequestId						: 		DS.attr('string'),
+	librisid						    : 		DS.attr('string'),
+	librismisc						    : 		DS.attr('string'),
 });

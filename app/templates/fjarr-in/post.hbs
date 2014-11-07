@@ -94,6 +94,26 @@
 											{{/if}}
 										</td>
 									</tr>									
+									<tr  title="Libris Id">
+										<th>Libris Id: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.librisid}}
+											{{else}}
+												{{order.librisid}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Övrig Librisdata">
+										<th>Övrig Librisdata: </th>
+										<td>
+											{{#if isEditingOrder}}
+												{{input classNames="form-control" type="text" value=order.librismisc}}
+											{{else}}
+												{{fix-new-line order.librismisc}}
+											{{/if}}
+										</td>
+									</tr>	
 									<tr  title="Författare">
 										<th>Författare: </th>
 										<td>
