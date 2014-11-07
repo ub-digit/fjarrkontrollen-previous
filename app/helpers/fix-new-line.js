@@ -1,7 +1,15 @@
 import Ember from 'ember';
 
 function fixNewLine(strObject) {
-	return new Handlebars.SafeString(strObject.replace(/\n/g, "<br />"));
+	if (strObject)
+	{
+  		return new Handlebars.SafeString(strObject.replace(/\n/g, "<br />"));
+	}
+  	else
+  	{
+  		return "";
+  	}
+
 }	
 
 export {
