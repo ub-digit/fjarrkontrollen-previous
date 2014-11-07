@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 
 export default Ember.Controller.extend({
 	getUserObject: function(id) {
@@ -13,5 +14,5 @@ export default Ember.Controller.extend({
 	},
 	getOrderTypeObject: function(id) {
 		return this.get("ordertypes").findBy('idInt', parseInt(id));
-	}
+	},
 });

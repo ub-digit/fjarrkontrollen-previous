@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.Evented, {
 	needs: ['application'],
@@ -103,6 +104,9 @@ export default Ember.Controller.extend(Ember.Evented, {
 		$("#" + id).removeClass("loading");
 	},
 
+	getPrintUrl: function() {
+		return ENV.APP.serviceURL + "/orders/" + this.get("order.id") + ".pdf?token="+ this.get("session").get("token");
+	}.property('order.id'),
 
 	actions: {
 
