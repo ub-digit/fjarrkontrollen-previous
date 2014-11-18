@@ -40,7 +40,7 @@
 				{{#if model}}
 					<table class="table table-striped table-condensed">
 				    	<tr>
-					    	<th {{bind-attr class="sortCols.ordernumber.active:active"}}>
+					    	<th {{bind-attr class=":ordernumber sortCols.ordernumber.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
 						    	{{#if sortCols.ordernumber.active}}
 						    		{{get-sort-dir-arrow sortCols.ordernumber.sortDir}}
@@ -75,7 +75,7 @@
 						{{#each item in model}}
 								<tr>
 					    			<td>{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} </td>
-					    			<td>{{item.name}}</td>
+					    			<td>{{trim-string item.name}}</td>
 					    			<td>
 					    			  {{ordertype-name item.orderTypeId}}
 					    			</td>
