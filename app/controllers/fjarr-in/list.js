@@ -9,8 +9,8 @@ export default Ember.Controller.extend({
 		status: 1,
 		mediaType: [1,2],
 		user: null,
-		sortfield: 'title',
-		sortdir: 'ASC',
+		sortfield: 'order_number',
+		sortdir: 'DESC',
 	},
 	
 	/* filter for interface */
@@ -31,11 +31,11 @@ export default Ember.Controller.extend({
 	},
 
 	sortCols: {
-		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'ASC'}),
+		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'DESC'}),
 		customer: Ember.Object.create({id:2, sortfield: "name", active: false, sortDir: 'ASC'}),
 		type: Ember.Object.create({id:3,sortfield: 'order_type_id' ,active: false, sortDir: 'ASC'}),
-		title: Ember.Object.create({id:3, sortfield: 'title', active: false, sortDir: 'ASC'}),
-		status: Ember.Object.create({id:3, active: false, sortfield: 'status_id', sortDir: 'ASC'})
+		title: Ember.Object.create({id:4, sortfield: 'title', active: false, sortDir: 'ASC'}),
+		status: Ember.Object.create({id:5, active: false, sortfield: 'status_id', sortDir: 'ASC'})
 	},
 
 
