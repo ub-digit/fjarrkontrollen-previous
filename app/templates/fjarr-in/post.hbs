@@ -316,7 +316,7 @@
 										{{/if}}
 									</tr>
 									<tr  title="Adress 2">
-										<th></th>
+										<th>&nbsp;</th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.company2}}</td>
 										{{else}}
@@ -325,7 +325,7 @@
 										
 									</tr>
 									<tr  title="Adress 3">
-										<th></th>
+										<th>&nbsp;</th>
 										{{#if isEditingCustomer}}
 											<td>{{input classNames="form-control" type="text" value=order.company3}}</td>
 										{{else}}
@@ -388,6 +388,14 @@
 										{{else}}
 											<td>{{order.invoicingName}}</td>
 										{{/if}}							
+									</tr>
+									<tr  title="Ansvarsnummer och beställarid">
+										<th>Ansvarsnummer och beställarid: </th>
+										{{#if isEditingCustomer}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingId}}</td>
+										{{else}}
+											<td>{{order.invoicingId}}</td>
+										{{/if}}		
 									</tr>
 									<tr  title="Adress, faktura">
 										<th>Adress, faktura: </th>

@@ -31,6 +31,7 @@ export default DS.Model.extend({
 	invoicingName 						: 		DS.attr('string'),
 	invoicingAddress 					: 		DS.attr('string'),
 	invoicingPostalAddress1 			: 		DS.attr('string'),
+	invoicingId 						: 		DS.attr('string'),
 	orderPath 							: 		DS.attr('string'),
 	createdAt 							: 		DS.attr('string'),
 	updatedAt 							: 		DS.attr('string'),
