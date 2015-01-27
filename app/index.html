@@ -6,18 +6,22 @@
     <title>FjarrkontrollCli</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{BASE_TAG}}
+    {{content-for 'head'}}
+    
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/fjarrkontroll-cli.css">
+    {{content-for 'head-footer'}}
+
   </head>
   <body>
+    {{content-for 'body'}}
     <script>
       window.EmberENV = {{EMBER_ENV}};
     </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/fjarrkontroll-cli.js"></script>
+    {{content-for 'body-footer'}}
     <script>
       window.FjarrkontrollCli = require('fjarrkontroll-cli/app')['default'].create({{APP_CONFIG}});
     </script>
