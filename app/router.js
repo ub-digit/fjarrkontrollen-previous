@@ -10,7 +10,8 @@ Router.map(function() {
 	this.route('list');
 	this.route('post',  {path: ":id"});
   });
-  this.route('fjarr-ut', function() {
+  
+  this.route('search', function() {
 
   });
 
