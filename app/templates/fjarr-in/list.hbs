@@ -52,7 +52,7 @@
 						    		{{get-sort-dir-arrow sortCols.customer.sortDir}}
 						    	{{/if}}
 					    	</th>
-					    	<th {{bind-attr class="sortCols.type.active:active"}}>
+					    	<th {{bind-attr class=":ordertype sortCols.type.active:active"}}>
 					    		<a href="javascript:void();" {{action 'sortMe' sortCols.type}}>Typ</a>
 								{{#if sortCols.type.active}}
 						    		{{get-sort-dir-arrow sortCols.type.sortDir}}
@@ -76,7 +76,7 @@
 								<tr>
 					    			<td>{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} </td>
 					    			<td>{{trim-string item.name}}</td>
-					    			<td>
+					    			<td class="ordertype">
 					    			  {{ordertype-name item.orderTypeId}}
 					    			</td>
 					    			<td>{{trim-string item.title}}</td>

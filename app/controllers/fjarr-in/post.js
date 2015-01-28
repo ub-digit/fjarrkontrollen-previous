@@ -28,7 +28,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 			journalTitle = 'Tidskriftstitel: ' + this.get("order.journalTitle") + "\n";
 		}
 
-		this.set("bibInfo", 'BIBLIOGRAFISKA UPPGIFTER \n' + title + authorStr +  journalTitle);
+		this.set("bibInfo", "\n\n" + 'BIBLIOGRAFISKA UPPGIFTER \n' + title + authorStr +  journalTitle);
 	},
 
 	observeAddBibInfo: function() {
@@ -39,11 +39,8 @@ export default Ember.Controller.extend(Ember.Evented, {
 			if (this.get("emailmessage.body")) {
 				oldStringToAddTo = this.get("emailmessage.body");
 			}
-			var rowbreaks = "";
-			if (oldStringToAddTo) {
-				var rowbreaks = "\n\n";
-			}
-			var newStringToPropagate = oldStringToAddTo + rowbreaks + newStringToAdd;
+
+			var newStringToPropagate = oldStringToAddTo + newStringToAdd;
 			this.set("emailmessage.body", newStringToPropagate);
 		}
 		else {
@@ -154,7 +151,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 		this.set("emailmessage.subject", this.get("selectedAnswer.subjectSv"));
 		this.set("emailmessage.body", this.get("selectedAnswer.bodySv"));
 		this.set("addBibInfo", true);
-		
+
 	}.observes('selectedAnswer'),
 
 	turnOnLoading: function(id) {
