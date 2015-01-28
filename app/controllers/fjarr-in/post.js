@@ -4,8 +4,6 @@ import ENV from '../../config/environment';
 export default Ember.Controller.extend(Ember.Evented, {
 	needs: ['application'],
 	isEditingGlobalOrder: false,
-	isEditingCustomer: false,
-	isEditingOrder: false,
 	isNewMessageVisible: false,
 	isNewNoteVisible: false, 
 
@@ -54,6 +52,17 @@ export default Ember.Controller.extend(Ember.Evented, {
 		{	
 			value: false,
 			label: "nej"
+		}
+	],
+
+	typeOfOrder: [
+		{
+			value: "1",
+			label: "Kopia",
+		},
+		{
+			value: "2",
+			label: "Lån"
 		}
 	],
 
