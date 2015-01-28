@@ -6,6 +6,52 @@ export default Ember.Controller.extend(Ember.Evented, {
 	isEditingGlobalOrder: false,
 	isNewMessageVisible: false,
 	isNewNoteVisible: false, 
+	addBibInfo: false,
+	bibInfo: "",
+
+	generateBibInfo: function() {
+		var title = "";
+		var customerStr = ""; 
+		var authorStr = "";
+		var journalTitle = "";
+
+		if (this.get("order.name")) {
+			customerStr = 'Låntagare: ' + this.get("order.name") + "\n";
+		}
+		if (this.get("order.title")) {
+			title = 'Title: ' + this.get("order.title") + "\n";
+		}
+		if (this.get("order.authors")) {
+			title = 'Författare: ' + this.get("order.authors") + "\n";
+		}
+		if (this.get("order.journalTitle")) {
+			journalTitle = 'Tidskriftstitel: ' + this.get("order.journalTitle") + "\n";
+		}
+
+		this.set("bibInfo", 'BIBLIOGRAFISKA UPPGIFTER \n' + title + authorStr +  journalTitle);
+	},
+
+	observeAddBibInfo: function() {
+		if (this.get("addBibInfo")) {
+			this.generateBibInfo();
+			var newStringToAdd = this.get("bibInfo");
+			var oldStringToAddTo = "";
+			if (this.get("emailmessage.body")) {
+				oldStringToAddTo = this.get("emailmessage.body");
+			}
+			var rowbreaks = "";
+			if (oldStringToAddTo) {
+				var rowbreaks = "\n\n";
+			}
+			var newStringToPropagate = oldStringToAddTo + rowbreaks + newStringToAdd;
+			this.set("emailmessage.body", newStringToPropagate);
+		}
+		else {
+			var unstrippedBody = this.get("emailmessage.body");
+			var strippedBody = unstrippedBody.replace(this.get("bibInfo"), "");
+			this.set("emailmessage.body", strippedBody);
+		}
+	}.observes('addBibInfo'),
 
 	notesSorted: function() {
 		// sort here
@@ -16,6 +62,10 @@ export default Ember.Controller.extend(Ember.Evented, {
 		});
 		return sorted;
 	}.property('notes.@each'),
+
+
+
+
 
 	emailmessage: {
 
@@ -100,8 +150,11 @@ export default Ember.Controller.extend(Ember.Evented, {
 	}.observes("message"),
 
 	updateEmailForm: function() {
+		this.set("addBibInfo", false);
 		this.set("emailmessage.subject", this.get("selectedAnswer.subjectSv"));
 		this.set("emailmessage.body", this.get("selectedAnswer.bodySv"));
+		this.set("addBibInfo", true);
+		
 	}.observes('selectedAnswer'),
 
 	turnOnLoading: function(id) {
@@ -192,7 +245,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 		},
 		createNewEmailMessage: function(orderId, email) {
 			var post = this.store.createRecord('note', {
-				orderId: orderId, userId: this.get("session").get("userid"), subject: this.get("emailmessage.subject"), message: this.get("emailmessage.body"), isEmail: email			});
+				orderId: orderId, userId: this.get("session").get("userid"), subject: this.get("emailmessage.subject"), message: this.get("emailmessage.body"), isEmail: email});
 			var that = this;
 			var onSuccess = function() {
 				that.set("controllers.application.message", "Ditt mejl har sparats och kommer att skickas");

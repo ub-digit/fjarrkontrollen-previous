@@ -10,6 +10,10 @@ export default Ember.View.extend({
 		this.get("controller").on("disable-emailmessage-btn", this, this.disableEmailBtn);
 	},
 
+	addBibInfo: function() {
+	
+	}.observes('controller.addBibInfo'),
+
 	enable: function() {
 		$("#notes-submit").removeClass("disabled");
 	},

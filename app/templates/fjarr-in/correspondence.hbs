@@ -34,6 +34,12 @@
 											<label class="sr-only">Meddelande:</label>
 											{{view Ember.TextArea placeholder="skriv ditt mejl här..." classNames="form-control" valueBinding="emailmessage.body" rows=10}}
 										</div>
+										 <div class="checkbox">
+										    <label>
+										    	{{input type="checkbox" name="addBibInfo" checked=addBibInfo}}
+										      	 Bifoga bibliografiska uppgifter i svaret
+										    </label>
+										  </div>
 										<div class="form-group">
 											<button id="email-submit" class="disabled btn btn-default pull-right" {{action 'createNewEmailMessage' order.id true}}type="submit">Skicka</button>
 										</div>
