@@ -83,30 +83,21 @@
 					    			<!--<td>{{item.formLibrary}}</td>-->
 									<td>{{status-name item.statusId}}</td>
 									<td>
-										{{#if item.userId }}
-											<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>
-											<div class="btn-group">
-											  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-											    {{user-name item.userId}} <span class="caret"></span>
-											  </button>
-											  <ul class="dropdown-menu" role="menu">
-											    <li><a href="#" {{action 'switchOwner' item.id session.userid}} {{session.username}}</a>
-											   	</li>
-											    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>	
-											  </ul>
-											</div>
-										{{else}}
-											<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>
-											<div class="btn-group">
-											  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-											     Ingen <span class="caret"></span>
-											  </button>
-											  <ul class="dropdown-menu" role="menu">
-											    <li><a {{action 'switchOwner' item.id session.userid}} href="#"> {{session.username}}</a></li>
-											    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>		
-											  </ul>
-											</div>
-										{{/if}}
+										<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>
+										<div class="btn-group">
+										  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+										  {{#if item.userId}}
+										  	{{user-name item.userId}} <span class="caret"></span>
+										  {{else}}
+										  	Ingen <span class="caret"></span>
+										  {{/if}}
+										  </button>
+										  <ul class="dropdown-menu" role="menu">
+										    <li><a href="#" {{action 'switchOwner' item.id session.userid}} {{session.username}}</a>
+										   	</li>
+										    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>	
+										  </ul>
+										</div>
 									</td>
 					    		</tr>
 					    	{{/each}}

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	needs: ['application'],
-
+	showOk: true, 
 	/* setup for filter params to server */
 	filterToServer: {
 		currentLocation: 1,
@@ -116,12 +116,15 @@ export default Ember.Controller.extend({
 					console.log(error);
 				};
 				var onSuccess = function() {
+
 					self.transitionToRoute("fjarr-in.list");
 					//self.set("controllers.application.message", "Handläggaren har tagits bort från ordern med nummer " + orderNumber);
 					self.turnOffLoading(orderNumber);
 				};
 
 				item.save().then(onSuccess, onError);
+			  // code here will execute within a RunLoop in about 500ms with this == myContext
+				
 
 			});
 		},
@@ -169,7 +172,9 @@ export default Ember.Controller.extend({
 			//		self.set("controllers.application.message", "Ordern med nummer " + orderNumber + " har bytt Handläggare till " + userId);
 					self.transitionToRoute("fjarr-in.list");
 				};
+
 				item.save().then(onSuccess, onError);
+				
 			});
 		},
 		setFolder: function(id) {

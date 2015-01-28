@@ -19,6 +19,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		controller.set('users', models.users);
 		controller.set('ordertypes', models.ordertypes);
 		controller.set('email_template', models.email_template); 
+		if (this.get("session")) {
+			this.controller.set("defaultLocation", this.get("session").get("userLocationId").toString());
+		}
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {
