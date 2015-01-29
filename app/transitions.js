@@ -9,7 +9,7 @@ export default function(){
 	this.transition(
 	  this.fromRoute('login'),
 	  this.toRoute('fjarr-in'),
-	  this.use('toLeft', {duration: 300}),
-	  this.reverse('toRight', {duration: 300})
+	  this.use('crossFade', {duration: 300}),
+	  this.reverse('crossFade', {duration: 300})
 	);
 }

@@ -2,7 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	needs: ['application'],
+	firstLoad: true, 
 	showOk: true, 
+
+	zeroOrdersFound: function() {
+		if (this.get("model.length") === 0) {
+			return true;
+		}
+	}.property('model.@each'),
+
 	/* setup for filter params to server */
 	filterToServer: {
 		currentLocation: 1,

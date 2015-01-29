@@ -2,6 +2,7 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 export default Ember.Controller.extend({
+
 	getUserObject: function(id) {
 		return this.get("users").findBy('idInt', parseInt(id));
 	},

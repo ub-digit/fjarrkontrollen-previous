@@ -103,7 +103,9 @@
 					    	{{/each}}
 				    </table> 
 				   {{else}}
-				    	<p>Finns inga ordrar att visa</p>
+				   		{{#if zeroOrdersFound}}
+				    		<p>Finns inga ordrar att visa</p>
+				    	{{/if}}
 			    	{{/if}}
 				</div>
 			</div>

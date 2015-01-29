@@ -1,17 +1,48 @@
-.fa {
+#global-spinner {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	background: rgba(0, 0, 0, 0.8);
+	margin-left: -25px;
+	color: #fff;
+	z-index: 100;
+	border-radius: 5px;
+	text-align: center;
+	padding-top: 10px;
+	.fa {
+		font-size: 30px;
+		.fa-spinner {
+		}
+	}
+}
+
+.loading {
+	#global-spinner {
+		display: block;
+	}
+}
+
+
+table .fa {
 	&.fa-spinner {
 		visibility: hidden;
 		&.loading {
 			visibility: visible;
 		}
 	}
-	&.fa-check {
-		color: @brand-success;
-	}
-	&.fa-times {
-		color: @brand-danger;
-	}
 }
+
+
+&.fa-check {
+	color: @brand-success;
+}
+&.fa-times {
+	color: @brand-danger;
+}
+
 
 a {
 	color: #025DA6;
@@ -114,6 +145,9 @@ h1 {
 
 .history-body {
 	margin-top: 10px;
+	p {
+		white-space: pre-line;
+	}
 
 }
 

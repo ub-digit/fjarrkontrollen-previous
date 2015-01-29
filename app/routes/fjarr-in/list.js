@@ -1,13 +1,32 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model: function() {
-		if (this.controllerFor("fjarr-in.list")) {
-			var filter = this.controllerFor("fjarr-in.list").get("filterToServer");
+	beforeModel: function() {
+		if (Ember.$("body")) {
+			Ember.$("body").addClass("loading");
 		}
-		var result =  this.store.find('order', filter);	
-		return result;
 	},
+	model: function() {
+		var temp = this.controllerFor("fjarr-in.list").get("firstLoad");
+		if (temp === true) {
+			this.controllerFor("fjarr-in.list").set("firstLoad", false);
+			return null;
+		}
+		else {
+			if (this.controllerFor("fjarr-in.list")) {
+				var filter = this.controllerFor("fjarr-in.list").get("filterToServer");
+			}
+			var result =  this.store.find('order', filter);	
+			return result;
+			
+		}
+	},
+	afterModel: function() {
+		if (Ember.$("body")) {
+			Ember.$("body").removeClass("loading");
+		}
+	},
+
 	setupController: function(controller, model) {
 		controller.set("model", model);
 		if (!controller.get("currentLocation")) {
