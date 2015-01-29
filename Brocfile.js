@@ -25,6 +25,7 @@ app.import('bower_components/jquery.scrollTo/jquery.scrollTo.min.js');
 app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
 app.import('bower_components/ember-i18n/lib/i18n.js');
 app.import('bower_components/rsvp/rsvp.min.js');
+app.import('bower_components/jquery-caret/jquery.caret.js');
 
 
 /*

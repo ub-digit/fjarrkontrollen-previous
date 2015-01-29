@@ -22,5 +22,8 @@
     "jquery.scrollTo": "~1.4.13",
     "rsvp": "~3.0.13",
     "ember-simple-auth": "0.7.1"
+  },
+  "devDependencies": {
+    "jquery-caret": "https://github.com/DrPheltRight/jquery-caret.git"
   }
 }

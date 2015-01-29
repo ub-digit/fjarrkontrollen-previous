@@ -11,5 +11,16 @@ export default Ember.Route.extend({
 	setupController: function(controller, models) {
 		controller.set("order", models.order);
 		controller.set("notes", models.notes);
+	},
+
+	deactivate: function() {
+		this.controller.set("isEditingGlobalOrder", false);
+		this.controller.set("isNewNoteVisible", false);
+		this.controller.set("isNewMessageVisible", false);
+		this.controller.set("addBibInfo", false);
+		this.controller.set("bibInfo", "");
+		this.controller.set("selectedAnswer", null);
+
+
 	}
 });

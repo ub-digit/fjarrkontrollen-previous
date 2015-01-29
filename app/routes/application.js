@@ -19,7 +19,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		controller.set('users', models.users);
 		controller.set('ordertypes', models.ordertypes);
 		controller.set('email_template', models.email_template); 
-		if (this.get("session")) {
+		if (this.get("session").get("userLocationId")) {
 			this.controller.set("defaultLocation", this.get("session").get("userLocationId").toString());
 		}
 	},

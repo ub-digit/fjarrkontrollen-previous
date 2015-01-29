@@ -19,7 +19,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 			customerStr = 'Låntagare: ' + this.get("order.name") + "\n";
 		}
 		if (this.get("order.title")) {
-			title = 'Title: ' + this.get("order.title") + "\n";
+			title = 'Titel: ' + this.get("order.title") + "\n";
 		}
 		if (this.get("order.authors")) {
 			title = 'Författare: ' + this.get("order.authors") + "\n";
@@ -28,7 +28,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 			journalTitle = 'Tidskriftstitel: ' + this.get("order.journalTitle") + "\n";
 		}
 
-		this.set("bibInfo", "\n\n" + 'BIBLIOGRAFISKA UPPGIFTER \n' + title + authorStr +  journalTitle);
+		this.set("bibInfo", "\n\n" + 'BIBLIOGRAFISKA UPPGIFTER \n' + customerStr + title + authorStr +  journalTitle);
 	},
 
 	observeAddBibInfo: function() {
