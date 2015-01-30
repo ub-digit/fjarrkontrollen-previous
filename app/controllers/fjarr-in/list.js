@@ -113,7 +113,6 @@ export default Ember.Controller.extend({
 		else {
 			this.set("filterToServer.user", null);
 		}
-		
 		this.convertFilterVars();
 
 		this.transitionToRoute("fjarr-in.index");
