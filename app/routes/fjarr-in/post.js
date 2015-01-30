@@ -20,7 +20,5 @@ export default Ember.Route.extend({
 		this.controller.set("addBibInfo", false);
 		this.controller.set("bibInfo", "");
 		this.controller.set("selectedAnswer", null);
-
-
 	}
 });

@@ -11,8 +11,8 @@ Router.map(function() {
 	this.route('post',  {path: ":id"});
   });
   
-  this.route('search', function() {
-
+  this.resource('search', function() {
+  	this.route('orders');
   });
 
   this.resource('login');
