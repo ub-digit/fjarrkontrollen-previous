@@ -13,6 +13,7 @@ export default Ember.Controller.extend({
 
 	/* setup for filter params to server */
 	filterToServer: {
+		search_term: '',
 		currentLocation: 1,
 		status: 1,
 		mediaType: [1,2],
@@ -38,6 +39,14 @@ export default Ember.Controller.extend({
 		id: 1
 	},
 
+	user: {
+		active:false,
+	},
+
+	query: '', 
+
+
+
 	sortCols: {
 		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'DESC'}),
 		customer: Ember.Object.create({id:2, sortfield: "name", active: false, sortDir: 'ASC'}),
@@ -45,6 +54,8 @@ export default Ember.Controller.extend({
 		title: Ember.Object.create({id:4, sortfield: 'title', active: false, sortDir: 'ASC'}),
 		status: Ember.Object.create({id:5, active: false, sortfield: 'status_id', sortDir: 'ASC'})
 	},
+
+
 
 
 	updateDisabledStatusOnOrderType: function() {
@@ -87,14 +98,27 @@ export default Ember.Controller.extend({
 			this.set("filterToServer.status", this.get('currentStatus'));
 		}
 
+		if (this.get("query")) {
+			this.set("filterToServer.search_term", this.get("query"));
+		}
+		else {
+			this.set("filterToServer.search_term", '');
+		}
 
-
-
-
+		if (this.get("user.active") === true) {
+			if (this.get("session.userid")) {
+				this.set("filterToServer.user", this.get("session.userid"));
+			}	
+		}
+		else {
+			this.set("filterToServer.user", null);
+		}
+		
 		this.convertFilterVars();
+
 		this.transitionToRoute("fjarr-in.index");
-		console.log("currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status: " + this.filterToServer.status + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','loan.active', 'currentLocation', 'copy.active', 'currentStatus', 'sortOrder'),
+		console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status: " + this.filterToServer.status + " sortOrder: " + this.sortOrder);
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','query','loan.active', 'currentLocation', 'copy.active', 'currentStatus', 'sortOrder'),
 	
 
 	convertFilterVars: function() {
@@ -114,7 +138,9 @@ export default Ember.Controller.extend({
 	},
 
 	actions: {
-
+		clearSearch: function() {
+			this.set("query", '');
+		},
 		removeOwner: function(orderNumber) {
 			this.turnOnLoading(orderNumber);
 			var self = this;
@@ -124,8 +150,8 @@ export default Ember.Controller.extend({
 					console.log(error);
 				};
 				var onSuccess = function() {
-
-					self.transitionToRoute("fjarr-in.list");
+					self.triggerFilter();
+				//	self.transitionToRoute("fjarr-in.list");
 					//self.set("controllers.application.message", "Handläggaren har tagits bort från ordern med nummer " + orderNumber);
 					self.turnOffLoading(orderNumber);
 				};
@@ -177,8 +203,9 @@ export default Ember.Controller.extend({
 				};
 				var onSuccess = function(item) {
 					self.turnOffLoading(orderNumber);
+					self.triggerFilter();
 			//		self.set("controllers.application.message", "Ordern med nummer " + orderNumber + " har bytt Handläggare till " + userId);
-					self.transitionToRoute("fjarr-in.list");
+					//self.transitionToRoute("fjarr-in.list");
 				};
 
 				item.save().then(onSuccess, onError);
@@ -201,7 +228,4 @@ export default Ember.Controller.extend({
 
 		},
 	}
-
-
-
 });
