@@ -74,7 +74,12 @@
 				    	</tr>
 						{{#each item in model}}
 								<tr>
-					    			<td>{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} </td>
+					    			<td>
+					    			{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} 
+					    			{{#if item.librisRequestId}}
+					    				<span class="badge">Libris</span>
+					    			{{/if}}
+					    			</td>
 					    			<td>{{trim-string item.name}}</td>
 					    			<td class="ordertype">
 					    			  {{ordertype-name item.orderTypeId}}

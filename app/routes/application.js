@@ -26,6 +26,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	actions: {
 		sessionAuthenticationSucceeded: function() {
 	    	this.controller.set("defaultLocation", this.get("session").get("userLocationId").toString());
+			if (dataLayer) {
+				var locationid = this.get("session").get("userLocationId");
+				var location = this.controller.get("locations").findBy("id", locationid.toString());
+				var label = location.get("label");
+				dataLayer.push({'userDefaultLocation': label});
+			}
 	    	return this._super();	
 	    },
 		sessionAuthenticationFailed: function(error) {

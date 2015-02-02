@@ -46,6 +46,12 @@ export default Ember.Controller.extend({
 	query: '', 
 
 
+	currentStatusChanged: function() {
+		if (dataLayer) {
+			dataLayer.push({'event': 'filterType', 'eventLabel':this.get("currentStatus")});
+		}
+
+	}.observes('currentStatus'),
 
 	sortCols: {
 		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'DESC'}),
@@ -124,6 +130,10 @@ export default Ember.Controller.extend({
 		// convert a zero of status id to null for server to not trigger any filter on this
 		if (this.get("filterToServer.status") === "0") {
 			this.set("filterToServer.status", null);
+		}
+
+		if (this.get("filterToServer.currentLocation") === 0) {
+			this.set("filterToServer.currentLocation", null);
 		}
 	},
 
