@@ -21,7 +21,8 @@
     "ember-animate": "~0.3.6",
     "jquery.scrollTo": "~1.4.13",
     "rsvp": "~3.0.13",
-    "ember-simple-auth": "0.7.1"
+    "ember-simple-auth": "0.7.1",
+    "ic-modal": "~1.0.0"
   },
   "devDependencies": {
     "jquery-caret": "https://github.com/DrPheltRight/jquery-caret.git"

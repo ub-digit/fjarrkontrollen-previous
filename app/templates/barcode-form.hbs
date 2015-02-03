@@ -1,0 +1,29 @@
+<!-- note this is ic-modal-form -->
+{{#ic-modal-form 
+  id="barcode-form"
+  on-submit="submitBarcodeForm"
+  awaiting-return-value=saving
+}}
+ {{#ic-modal-title}}<h2>Scanna Streckkod</h2>{{/ic-modal-title}}
+  <!-- in here you are already a form, just add your form elements -->
+
+  <!-- in here you are already a form, just add your form elements -->
+
+  <fieldset>
+    <label for="name">Streckkod</label>
+    {{input class="form-control" id="name" placeholder="Scanna streckkod"}}
+  </fieldset>
+
+  <!-- and put your buttons in the footer -->
+  <br>
+  <fieldset>
+    <!-- when "awaiting-return-value" is true, "saving" will be also -->
+    {{#if saving}}
+      Laddar...
+    {{else}}
+      {{#ic-modal-trigger class="btn btn-danger"}}Cancel{{/ic-modal-trigger}}
+      <button class="btn btn-success" type="submit">Skicka</button>
+    {{/if}}
+  </fieldset>
+
+{{/ic-modal-form}}
