@@ -3,7 +3,6 @@ import Ember from 'ember';
 function statusName(statusId) {
  	var applicationController = this.get("controllers.application");
 	var status = applicationController.getStatusObject(statusId);
-	console.log("status from helper " + status.get("nameSv"));
 	if (status) {
 		return status.get("nameSv");
 	}

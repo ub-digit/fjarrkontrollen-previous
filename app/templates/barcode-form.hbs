@@ -1,30 +1,29 @@
-<!-- note this is ic-modal-form -->
-{{#ic-modal-form 
+
+
+{{#ic-modal
   open-when=barcodeIsVisible
+   close-when=barcodeIsHidden
   id="barcode-form"
-  on-submit="submitBarcodeForm"
-  awaiting-return-value=saving
 }}
- {{#ic-modal-title}}<h2>Scanna Streckkod</h2>{{/ic-modal-title}}
-  <!-- in here you are already a form, just add your form elements -->
-
-  <!-- in here you are already a form, just add your form elements -->
-
+<form>
+  {{#ic-modal-title}}<h2>Scanna Streckkod</h2>{{/ic-modal-title}}
   <fieldset>
     <label for="name">Streckkod</label>
-    {{input class="form-control" id="name" placeholder="Scanna streckkod (exempel: 20140520-151602.16)"}}
+    {{input class="form-control" id="name" value=orderNumber placeholder="Scanna streckkod (exempel: 20140520-151602.16)"}}
   </fieldset>
 
   <!-- and put your buttons in the footer -->
   <br>
+  {{#if error}}
+    <div class="alert alert-danger" role="alert">
+    <i class="fa fa-exclamation-triangle"></i>
+    <span class="sr-only">Fel:</span>
+    Ingen order med detta ordernummer kunde hittas. 
+  </div>
+  {{/if}}
   <fieldset>
     <!-- when "awaiting-return-value" is true, "saving" will be also -->
-    {{#if saving}}
-      Laddar...
-    {{else}}
-      {{#ic-modal-trigger class="btn btn-danger"}}Cancel{{/ic-modal-trigger}}
-      <button class="btn btn-success" type="submit">Skicka</button>
-    {{/if}}
+      <button {{bind-attr class=":btn :btn-success isEnabled:enabled:disabled"}} type="submit" {{action 'submitBarcodeForm'}}>Skicka</button>
   </fieldset>
-
-{{/ic-modal-form}}
+</form>
+{{/ic-modal}}
