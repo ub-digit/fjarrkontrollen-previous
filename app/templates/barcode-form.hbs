@@ -1,5 +1,6 @@
 <!-- note this is ic-modal-form -->
 {{#ic-modal-form 
+  open-when=barcodeIsVisible
   id="barcode-form"
   on-submit="submitBarcodeForm"
   awaiting-return-value=saving
@@ -11,7 +12,7 @@
 
   <fieldset>
     <label for="name">Streckkod</label>
-    {{input class="form-control" id="name" placeholder="Scanna streckkod"}}
+    {{input class="form-control" id="name" placeholder="Scanna streckkod (exempel: 20140520-151602.16)"}}
   </fieldset>
 
   <!-- and put your buttons in the footer -->

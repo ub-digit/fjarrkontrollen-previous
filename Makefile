@@ -1,27 +1,40 @@
-DISTDIR=dist
-TESTSERVER=fjarrkontrollen-test.ub.gu.se
-DRIFTSERVER=fjarrkontrollen.ub.gu.se
-DESTDIR=/apps/fjarrkontrollen
+# -------------------------------------------------- #
 APPENV=production
-
+DISTDIR=dist
+# -------------------------------------------------- #
+TEST_SERVER=fjarrkontrollen-test.ub.gu.se
+DEMO_SERVER=fjarrkontrollen-demo.ub.gu.se
+LIVE_SERVER=fjarrkontrollen.ub.gu.se
+# -------------------------------------------------- #
+TEST_DESTDIR=/apps/fjarrkontrollen
+DEMO_DESTDIR=/apps/demo/fjarrkontrollen
+LIVE_DESTDIR=/apps/fjarrkontrollen
+# -------------------------------------------------- #
 
 all:
 	@echo -n "run like this:"
-	@echo    "'make deploy-test'"
+	@echo    "'make test'"
 	@echo -n "           or:"
-	@echo    "'make deploy-drift'"
+	@echo    "'make demo'"
+	@echo -n "           or:"
+	@echo    "'make live'"
 
 
-
-deploy-drift:
-	./create-deploy-info.sh
-	ember build --environment=production-live
-	mv deploy-info.txt dist
-	scp -r $(DISTDIR)/* $(DRIFTSERVER):$(DESTDIR)/
-
-
-deploy-test:
+test:
 	./create-deploy-info.sh
 	ember build --environment=production-test
 	mv deploy-info.txt dist
-	scp -r $(DISTDIR)/* app-user@$(TESTSERVER):$(DESTDIR)/
+	scp -r $(DISTDIR)/* app-user@$(TEST_SERVER):$(TEST_DESTDIR)/
+
+demo:
+	./create-deploy-info.sh
+	ember build --environment=production-demo
+	mv deploy-info.txt dist
+	scp -r $(DISTDIR)/* app-user@$(DEMO_SERVER):$(DEMO_DESTDIR)/
+
+live:
+	./create-deploy-info.sh
+	ember build --environment=production-live
+	mv deploy-info.txt dist
+	scp -r $(DISTDIR)/* $(LIVE_SERVER):$(LIVE_DESTDIR)/
+

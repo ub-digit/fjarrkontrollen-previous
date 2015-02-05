@@ -3,11 +3,13 @@ import ENV from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.Evented, {
 	needs: ['application'],
+	isComingFromScanning: false, 
 	isEditingGlobalOrder: false,
 	isNewMessageVisible: false,
 	isNewNoteVisible: false, 
 	addBibInfo: false,
 	bibInfo: "",
+
 
 	generateBibInfo: function() {
 		var title = "";
@@ -115,6 +117,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 
 	init: function() {
 		this.on("updateHistory", this.getCurrentHistory);
+
 	},
 
 	getCurrentHistory: function() {
@@ -166,7 +169,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 	getPrintUrl: function() {
 		return ENV.APP.serviceURL + "/orders/" + this.get("order.id") + ".pdf?token="+ this.get("session").get("token");
 	}.property('order.id'),
-
+	
 	actions: {
 
 		/* ##### GLOBAL EDIT ##### */ 
@@ -275,7 +278,8 @@ export default Ember.Controller.extend(Ember.Evented, {
 
 		hideCreateNewNote: function() {
 			this.set("isNewNoteVisible", false);
-		}
+		},
+
 
 
  	}

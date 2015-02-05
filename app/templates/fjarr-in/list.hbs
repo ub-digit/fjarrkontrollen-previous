@@ -6,7 +6,7 @@
 					{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentLocation}}
 				</div>
 				<div class="col-xs-3">
-					{{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentStatus}}
+					{{view Ember.Select classNames="form-control" content=controllers.application.status_groups optionValuePath="content.label" optionLabelPath="content.nameSv" value=currentStatusGroup}}
 				</div>
 				<div class="col-xs-3">
 					<form id="query-form">

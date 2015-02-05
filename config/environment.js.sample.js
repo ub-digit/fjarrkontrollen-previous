@@ -31,8 +31,17 @@ module.exports = function(environment) {
 
   }
 
-  if (environment === 'production') {
+  if (environment === 'production-test') {
     ENV.APP.serviceURL = 'http://fjarrkontrollen-server-test.ub.gu.se';
+    ENV.APP.authenticationBaseURL = 'http://fjarrkontrollen-server-test.ub.gu.se/session';
+  }
+  if (environment === 'production-demo') {
+    ENV.APP.serviceURL = 'http://fjarrkontrollen-server-demo.ub.gu.se';
+    ENV.APP.authenticationBaseURL = 'http://fjarrkontrollen-server-demo.ub.gu.se/session';
+  }
+  if (environment === 'production-live') {
+    ENV.APP.serviceURL = 'http://fjarrkontrollen-server.ub.gu.se';
+    ENV.APP.authenticationBaseURL = 'http://fjarrkontrollen-server.ub.gu.se/session';
   }
 
   if (environment === 'test') {
