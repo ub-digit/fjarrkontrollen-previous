@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
 	filterToServer: {
 		search_term: '',
 		currentLocation: 1,
-		status: 1,
+		status_group: 1,
 		mediaType: [1,2],
 		user: null,
 		sortfield: 'order_number',
@@ -98,10 +98,10 @@ export default Ember.Controller.extend({
 		}
 		
 		if (this.currentStatus === '0') {
-			this.set("filterToServer.status", "");
+			this.set("filterToServer.status_group", "");
 		}
 		else {
-			this.set("filterToServer.status", this.get('currentStatus'));
+			this.set("filterToServer.status_group", this.get('currentStatusGroup'));
 		}
 
 		if (this.get("query")) {
@@ -122,14 +122,14 @@ export default Ember.Controller.extend({
 		this.convertFilterVars();
 
 		this.transitionToRoute("fjarr-in.index");
-		console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status: " + this.filterToServer.status + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','query','loan.active', 'currentLocation', 'copy.active', 'currentStatus', 'sortOrder'),
+		console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','query','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder'),
 	
 
 	convertFilterVars: function() {
 		// convert a zero of status id to null for server to not trigger any filter on this
-		if (this.get("filterToServer.status") === "0") {
-			this.set("filterToServer.status", null);
+		if (this.get("filterToServer.status_group") === "0") {
+			this.set("filterToServer.status_group", null);
 		}
 
 		if (this.get("filterToServer.currentLocation") === 0) {

@@ -32,8 +32,8 @@ export default Ember.Route.extend({
 		if (!controller.get("currentLocation")) {
 			controller.set("currentLocation", this.controllerFor('application').get("defaultLocation"));
 		}
-		if (!controller.get("currentStatus")) {
-			controller.set("currentStatus", this.controllerFor('application').get("defaultStatus"));
+		if (!controller.get("currentStatusGroup")) {
+			controller.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
 		}
 		
 		if (controller.folder.length === 0) {
