@@ -17,6 +17,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		controller.set('defaultStatusGroup', 'all');
 		controller.set('locations', models.locations);
 		controller.set('statuses', models.statuses);
+
 		controller.set('status_groups', models.status_groups);
 		controller.set('users', models.users);
 		controller.set('ordertypes', models.ordertypes);
@@ -24,6 +25,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		if (this.get("session").get("userLocationId")) {
 			this.controller.set("defaultLocation", this.get("session").get("userLocationId").toString());
 		}
+
+		/// make copy of status array and reduce it to only active ones 
+		var temp = this.controller.get('statuses').reduce(function(previousValue, item, index, enumerable){
+			if (item.active) {
+				return item;
+			}
+		});
+
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {
