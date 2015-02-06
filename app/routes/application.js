@@ -26,13 +26,13 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			this.controller.set("defaultLocation", this.get("session").get("userLocationId").toString());
 		}
 
-		/// make copy of status array and reduce it to only active ones 
-		var temp = this.controller.get('statuses').reduce(function(previousValue, item, index, enumerable){
-			if (item.active) {
+		/// make copy of status array and filter it to only active ones 
+		var onlyActiveStatuses = this.controller.get('statuses').filter(function(item, index, enumerable){
+			if (item.get("isActive")) {
 				return item;
 			}
 		});
-
+		controller.set("statusesActiveOnly", onlyActiveStatuses);
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {

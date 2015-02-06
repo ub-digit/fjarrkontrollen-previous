@@ -34,7 +34,7 @@
 
 						<h4>Status: </h4> 
 						{{#if isEditingGlobalOrder}}
-							 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId}}
+							 {{view Ember.Select classNames="form-control" content=controllers.application.statusesActiveOnly optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId}}
 						{{else}}
 							{{status-name order.statusId}}
 						{{/if}}
