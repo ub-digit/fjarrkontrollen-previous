@@ -70,19 +70,18 @@
 									<div class="row">
 										<div class="history-header col-xs-12">
 											{{#if item.isEmail}}
-												<i class="fa fa-envelope-o"></i>
+												<i class="fa fa-envelope-o margin-right-10"></i>
 											{{else}}
-												<i class="fa fa-file-text-o"></i>
+												<i class="fa fa-file-text-o margin-right-10"></i>
 											{{/if}}
 											<strong> {{format-date item.createdAt}}</strong> av <strong>{{user-name item.userId}}</strong>
+											<button class="btn btn-default btn-xs pull-right"><i class="fa fa-thumb-tack active"></i></button>
 										</div>
 										<div class="history-body col-xs-12">
 											{{#if item.subject}}
 												<p><strong>Ämne: </strong> {{item.subject}}</p>
 											{{/if}}
-											<p> 
-											{{{item.message}}}
-											</p>
+											<p>{{{item.message}}}</p>
 										</div>
 									</div>
 								</div>

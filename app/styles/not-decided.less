@@ -178,16 +178,27 @@ h1 {
 }
 
 
+.well {
+	padding: 10px 10px;
+}
 .history-header {
+	font-size: 12px;
 	.fa {
-		margin-right:10px;
+		&.margin-right-10 {
+			margin-right:10px;
+		}
+		&.active {
+			color: @brand-success;
+		}
 	}
+
 }
 
 .history-body {
 	margin-top: 10px;
 	p {
 		white-space: pre-line;
+		font-size: 12px;
 	}
 
 }
