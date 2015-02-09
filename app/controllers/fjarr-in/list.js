@@ -220,21 +220,6 @@ export default Ember.Controller.extend({
 				item.save().then(onSuccess, onError);
 				
 			});
-		},
-		setFolder: function(id) {
-			this.folder.forEach(function(item, index) {
-				item.set("active",false);
-			});
-
-			var clickedFolder = this.folder.find(function(item, index) {
-				if (item.id === id) {
-					return item;
-				}
-			});
-			this.filterToServer.user = clickedFolder.get("user");
-			clickedFolder.set("active", true);
-
-
-		},
+		}
 	}
 });

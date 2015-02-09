@@ -9,7 +9,19 @@ export default Ember.Controller.extend(Ember.Evented, {
 	isNewNoteVisible: false, 
 	addBibInfo: false,
 	bibInfo: "",
+	stickyNoteForThisOrder: null,
 
+	stickyNoteChanged: function() {
+		// change stickyNoteForOrder and save
+		this.set("order.stickyNoteId", this.get("stickyNoteForThisOrder"));
+		var self = this;
+		var onSuccess = function() {
+			//self.set("controllers.application.message", "Order " + self.get("model.orderNumber") + " har sparats.");
+		}
+		var onError = function() {
+		}
+		this.get("order").save().then(onSuccess, onError);
+	}.observes('stickyNoteForThisOrder'),
 
 	generateBibInfo: function() {
 		var title = "";
@@ -178,6 +190,15 @@ export default Ember.Controller.extend(Ember.Evented, {
 	
 	actions: {
 
+		toggleStickyNote: function(noteId) {
+			if (this.get("stickyNoteForThisOrder") === noteId) {
+				this.set("stickyNoteForThisOrder", null);
+			}
+			else {
+				this.set("stickyNoteForThisOrder", noteId);
+			}
+		},
+
 		/* ##### GLOBAL EDIT ##### */ 
 		enterGlobalEditMode: function() {
 			this.set("isEditingGlobalOrder", true);
@@ -196,36 +217,12 @@ export default Ember.Controller.extend(Ember.Evented, {
 			}
 			var onError = function() {
 			}
+
 			this.get("order").save().then(onSuccess, onError);
 
 			this.set("isEditingGlobalOrder",false);
 		},
 
-		/* ##### CUSTOMER EDIT ##### */ 
-		enterCustomerEditMode: function() {
-			this.set("isEditingCustomer", true);
-		},
-		resetCustomer: function() {
-			this.get("order").rollback();
-			this.set("isEditingCustomer", false);
-		},
-		saveCustomer: function() {
-			this.get("order").save();
-			this.set("isEditingCustomer", false);
-		},
-
-		/* ##### ORDER EDIT ##### */ 
-		enterOrderEditMode: function() {
-			this.set("isEditingOrder", true);
-		},
-		saveOrder: function() {
-			this.get("order").save(); /// check promise from server... then continue.. 
-			this.set("isEditingOrder", false);
-		},
-		resetOrder: function() {
-			this.get("order").rollback();
-			this.set("isEditingOrder", false);
-		}, 
 		createNewMessage: function(orderId, email) {
 			//var user = this.get("controllers.application.currentUser.id");
 			var post = this.store.createRecord('note', {

@@ -8,9 +8,20 @@ export default Ember.Route.extend({
 		});
 
 	},
+
+	beforeModel: function() {
+		Ember.$("body").addClass("loading");
+	},
+
+	afterModel: function() {
+		Ember.$("body").removeClass("loading");
+	},
+
 	setupController: function(controller, models) {
 		controller.set("order", models.order);
 		controller.set("notes", models.notes);
+		var temp = controller.get("order.stickyNoteId");
+		controller.set("stickyNoteForThisOrder", controller.get("order.stickyNoteId"));
 	},
 
 	deactivate: function() {

@@ -63,7 +63,6 @@
 					</div>
 					<div class="row top-space-30">
 						<section id="history">
-
 							<div class="col-xs-12">
 								{{#each item in notesSorted}}
 								<div class="well">
@@ -75,7 +74,9 @@
 												<i class="fa fa-file-text-o margin-right-10"></i>
 											{{/if}}
 											<strong> {{format-date item.createdAt}}</strong> av <strong>{{user-name item.userId}}</strong>
-											<button class="btn btn-default btn-xs pull-right"><i class="fa fa-thumb-tack active"></i></button>
+											<button title="Sätter denna notering som sticky. Detta gör att den blir tillgänglig i översiktslistan." class='btn btn-default btn-xs pull-right' {{action 'toggleStickyNote' item.id}}>
+												{{is-this-a-stickynote item.id stickyNoteForThisOrder}}
+											</button>
 										</div>
 										<div class="history-body col-xs-12">
 											{{#if item.subject}}
