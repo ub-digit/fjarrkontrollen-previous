@@ -29,6 +29,7 @@ export default Ember.Route.extend({
 
 	setupController: function(controller, model) {
 		controller.set("model", model);
+		var meta = controller.get("model.meta");
 		if (!controller.get("currentLocation")) {
 			controller.set("currentLocation", this.controllerFor('application').get("defaultLocation"));
 		}
