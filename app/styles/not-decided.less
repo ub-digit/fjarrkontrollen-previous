@@ -37,7 +37,22 @@
 	}
 }
 
+.center-within {
+	text-align: center;
+}
 
+
+.pagination {
+	li {
+		display: inline-block;
+		&:first-child, &:last-child {
+			a {
+				width: 150px;
+			}
+		}
+
+	}
+}
 
 //ic-modal 
 ic-modal-screen,
@@ -50,6 +65,7 @@ ic-modal-title {
 ic-modal-title {
 
 }
+
 
 #barcode-form {
 	z-index: 101;
@@ -71,12 +87,38 @@ ic-modal-title {
 }
 
 
+.stickyNote {
+	display: inline-block;
+	position: relative;
+	.badge {
+		cursor: pointer;
+		background: @brand-primary;
+	}
+
+	.stickyNoteContent {
+		display: none;
+		position: absolute;
+		width: 300px;
+		top: 0;
+		left: 30px;
+	}
+	&:hover {
+		.stickyNoteContent {
+			display: block;
+		}
+	}		
+}
+
+
 table .fa {
 	&.fa-spinner {
 		visibility: hidden;
 		&.loading {
 			visibility: visible;
 		}
+	}
+	td {
+		position: relative;
 	}
 }
 

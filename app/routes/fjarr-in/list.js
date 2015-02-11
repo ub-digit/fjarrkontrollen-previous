@@ -36,10 +36,6 @@ export default Ember.Route.extend({
 		if (!controller.get("currentStatusGroup")) {
 			controller.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
 		}
-		
-		if (controller.folder.length === 0) {
-			controller.folder.pushObject(Ember.Object.create({id: 1, name: 'Alla ordrar' , active: true, user: null}));
-			controller.folder.pushObject(Ember.Object.create({id: 2, name: 'Mina ordrar', active: false, user: this.get("session.userid")}));
-		}
+
 	}
 });
