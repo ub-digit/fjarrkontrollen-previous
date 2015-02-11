@@ -20,7 +20,6 @@ export default Ember.Route.extend({
 	setupController: function(controller, models) {
 		controller.set("order", models.order);
 		controller.set("notes", models.notes);
-		var temp = controller.get("order.stickyNoteId");
 		controller.set("stickyNoteForThisOrder", controller.get("order.stickyNoteId"));
 	},
 

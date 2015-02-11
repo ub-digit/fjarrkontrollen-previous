@@ -20,8 +20,9 @@ export default Ember.Controller.extend({
 		user: null,
 		sortfield: 'order_number',
 		sortdir: 'DESC',
+		page: 1
 	},
-	
+	currentPage: 1, 
 	/* filter for interface */
 	// loan
 	loan: {
@@ -30,8 +31,6 @@ export default Ember.Controller.extend({
 		name: 'Lån',
 		id: 2
 	},
-	folder: [],
-
 	copy: {
 		active: true,
 		disabled: false,
@@ -45,6 +44,11 @@ export default Ember.Controller.extend({
 
 	query: '', 
 
+
+	currentPageChanged: function() {
+		this.set("filterToServer.page", this.get("currentPage"));
+		this.transitionToRoute("fjarr-in.index");
+	}.observes('currentPage'),
 
 	currentStatusChanged: function() {
 		if (dataLayer) {
@@ -119,10 +123,12 @@ export default Ember.Controller.extend({
 		else {
 			this.set("filterToServer.user", null);
 		}
+		this.set("filterToServer.page", 1);
+		
 		this.convertFilterVars();
 
 		this.transitionToRoute("fjarr-in.index");
-		console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
+	//	console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
 	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','query','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder'),
 	
 

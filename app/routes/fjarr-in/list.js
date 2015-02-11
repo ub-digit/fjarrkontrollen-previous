@@ -29,16 +29,13 @@ export default Ember.Route.extend({
 
 	setupController: function(controller, model) {
 		controller.set("model", model);
+		var meta = controller.get("model.meta");
 		if (!controller.get("currentLocation")) {
 			controller.set("currentLocation", this.controllerFor('application').get("defaultLocation"));
 		}
 		if (!controller.get("currentStatusGroup")) {
 			controller.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
 		}
-		
-		if (controller.folder.length === 0) {
-			controller.folder.pushObject(Ember.Object.create({id: 1, name: 'Alla ordrar' , active: true, user: null}));
-			controller.folder.pushObject(Ember.Object.create({id: 2, name: 'Mina ordrar', active: false, user: this.get("session.userid")}));
-		}
+
 	}
 });

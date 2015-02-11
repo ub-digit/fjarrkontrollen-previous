@@ -79,6 +79,21 @@
 					    			{{#if item.librisRequestId}}
 					    				<span class="badge">Libris</span>
 					    			{{/if}}
+									{{#if item.stickyNoteId}}
+										<div class="stickyNote">
+					    					<span class="badge"><i class="fa fa-file-text-o"></i></span>
+							    				<div class="stickyNoteContent well well-sm">
+							    					{{#if item.stickyNoteSubject}}
+							    						<h4>{{item.stickyNoteSubject}}</h4>
+							    					{{/if}}
+							    					{{#if item.stickyNoteMessage}}
+							    						<p>
+							    							{{item.stickyNoteMessage}}
+							    						</p>
+							    					{{/if}}
+							    				</div>
+							    		</div>
+					    			{{/if}}
 					    			</td>
 					    			<td>{{trim-string item.name}}</td>
 					    			<td class="ordertype">
@@ -116,8 +131,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="row">
+		<div class="col-md-12 center-within">
+			{{pagination-pager pagination=model.meta.pagination currentpage=currentPage}}					
+		</div>
+	</div>
 </div>
-
-
-{{outlet}}

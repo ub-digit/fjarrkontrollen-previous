@@ -1,0 +1,27 @@
+<nav>
+  <ul class="pagination">
+    <li {{bind-attr class="pagination.previous:enabled:disabled"}}>
+      <a {{action 'updateCurrentPage' pagination.previous}} href="javascript:void();" aria-label="Previous">
+        <span aria-hidden="true"><i class="fa fa-chevron-left"></i> Föregående </span>
+      </a>
+    </li>
+
+    {{#each page in pageArray}}
+    {{#if page.spacer}}
+     <li {{bind-attr class="page.active:active :page"}}>
+      	<span>...</span>
+     </li>
+    {{else}}
+      <li {{bind-attr class="page.active:active :page"}}>
+		<a href="javascript:void();" {{action 'updateCurrentPage' page.page}}> <span>{{page.page}}</span></a>
+      </li>
+    {{/if}}
+  {{/each}}
+
+    <li {{bind-attr class="pagination.next:enabled:disabled"}}>
+      <a {{action 'updateCurrentPage' pagination.next}} href="javascript:void();" aria-label="Previous">
+        <span aria-hidden="true">Nästa <i class="fa fa-chevron-right"></i></span>
+      </a>
+    </li>
+  </ul>
+</nav>
