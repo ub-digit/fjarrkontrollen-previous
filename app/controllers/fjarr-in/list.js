@@ -41,8 +41,11 @@ export default Ember.Controller.extend({
 	user: {
 		active:false,
 	},
+	queryReady: '',
 
 	query: '', 
+
+	timeout: null,
 
 
 	currentPageChanged: function() {
@@ -56,6 +59,16 @@ export default Ember.Controller.extend({
 		}
 
 	}.observes('currentStatus'),
+
+	queryChanged: function() {
+		var that = this;
+		  if (this.timeout) {  
+		    clearTimeout(this.timeout);
+		  }
+		  this.timeout = setTimeout(function() {
+		     that.set("queryReady", that.get("query"));
+		  }, 500);
+	}.observes('query'),
 
 	sortCols: {
 		ordernumber: Ember.Object.create({id:1, sortfield: "order_number", active: true, sortDir: 'DESC'}),
@@ -129,7 +142,7 @@ export default Ember.Controller.extend({
 
 		this.transitionToRoute("fjarr-in.index");
 	//	console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','query','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder'),
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder'),
 	
 
 	convertFilterVars: function() {
