@@ -42,11 +42,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 				var location = this.controller.get("locations").findBy("id", locationid.toString());
 				var label = location.get("label");
 				dataLayer.push({'userDefaultLocation': label});
+				dataLayer.push({'event':'userLoggedIn'});
 			}
 	    	return this._super();	
 	    },
 		sessionAuthenticationFailed: function(error) {
 		    this.controllerFor('login').set('error', error);
+		},
+		sessionInvalidationSucceeded: function() {
+			if (dataLayer) {
+				dataLayer.push({'event': 'userLoggedOut'});
+			}
+			Ember.run.later(this,this._super(), 100);
 		}
     
 	}
