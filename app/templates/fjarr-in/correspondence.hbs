@@ -14,8 +14,17 @@
 							<div class="col-xs-12">
 								<div id="new-message" {{bind-attr class="isNewMessageVisible:visible"}}>
 									<a class="pull-right" {{action 'hideCreateNewEmailMessage'}} href="javascript:void()"><i class="fa fa-times"></i></a>
+									<button class="btn btn-default" {{action 'toggleLangForStandardAnswer'}}>
+									{{#if isToDisplayStandardAnswerInSwedish}} 
+										Byt till engelska
+									{{else}}
+										Byt till svenska
+									{{/if}}
+
+									</button>
 									<form class="form">
 										<div class="form-group">
+										{{#if isToDisplayStandardAnswerInSwedish}} 
 											{{view Ember.Select classNames="form-control" viewName="select-standard-answer"
 							                    content=controllers.application.email_template
 							                    optionLabelPath="content.subjectSv"
@@ -23,6 +32,15 @@
 							                    prompt="Välj standardsvar:"
                 								selection=selectedAnswer
                 							}}
+                						{{else}}
+											{{view Ember.Select classNames="form-control" viewName="select-standard-answer"
+							                    content=controllers.application.email_template
+							                    optionLabelPath="content.subjectEn"
+							                    optionValuePath="content.id"
+							                    prompt="Välj standardsvar:"
+                								selection=selectedAnswer
+                							}}
+                						{{/if}}
 										</div>
 										<div class="form-group">
 											<label class="sr-only">Rubrik:</label>

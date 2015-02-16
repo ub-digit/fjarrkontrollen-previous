@@ -21,6 +21,7 @@ export default Ember.Route.extend({
 		controller.set("order", models.order);
 		controller.set("notes", models.notes);
 		controller.set("stickyNoteForThisOrder", controller.get("order.stickyNoteId"));
+		controller.set("langForStandardAnswer", 'Svenska');
 	},
 
 	deactivate: function() {
