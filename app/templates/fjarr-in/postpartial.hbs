@@ -38,6 +38,12 @@
 						{{else}}
 							{{status-name order.statusId}}
 						{{/if}}
+						<h4>Utlånande bibliotek: </h4> 
+						{{#if isEditingGlobalOrder}}
+							{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+						{{else}}
+							{{order.lendingLibrary}}
+						{{/if}}
 					</form>
 				</div>
 			</div>
