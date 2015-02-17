@@ -266,7 +266,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 			var self = this;
 			var onSuccess = function() {
 				self.turnOffLoading(id);
-				//self.set("controllers.application.message", "Order " + self.get("model.orderNumber") + " har sparats.");
+				self.send('refreshModel', id);
 			}
 			var onError = function() {
 			}

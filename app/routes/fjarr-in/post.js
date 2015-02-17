@@ -32,5 +32,11 @@ export default Ember.Route.extend({
 		this.controller.set("bibInfo", "");
 		this.controller.set("selectedAnswer", null);
 		this.controller.set("isComingFromScanning", false);
+	},
+
+	actions:  {
+	    refreshModel: function(modelId) {
+	      this.refresh(modelId);
+	    }	
 	}
 });

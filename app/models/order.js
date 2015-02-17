@@ -1,7 +1,9 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+	isArchived							: 		DS.attr("boolean"),
 	stickyNoteId						: 		DS.attr("string"),
+	deliverySourceId					: 		DS.attr("string"),
 	stickyNoteSubject					:  		DS.attr("string"),
 	stickyNoteMessage					:  		DS.attr("string"),
   	orderTypeId 					    : 		DS.attr('string'),
