@@ -17,10 +17,10 @@
 						</div>
 						<div class="col-xs-4 single-order-toolbar" id="global-settings-order-actions">
 							{{#if isEditingGlobalOrder}}
-								<a href="#" class="btn btn-default btn-sm pull-right" {{action 'saveGlobalOrderMetaData'}}><i class="fa fa-check last"></i> Spara</a>
-								<a href="#" class="pull-right btn btn-sm btn-default" {{action 'resetGlobalMetaData'}}><i class="fa fa-times"></i> Stäng</a>
+								<a href="#" class="btn btn-default btn-sm pull-right" {{action 'saveGlobalOrderMetaData'}}>Spara <i class="fa fa-check last"></i></a>
+								<a href="#" class="pull-right btn btn-sm btn-default" {{action 'resetGlobalMetaData'}}>Stäng <i class="fa fa-times"></i></a>
 							{{else}}
-								<a href="#" class="pull-right btn btn-sm btn-default" {{action 'enterGlobalEditMode'}}><i class="fa fa-pencil last"></i> Redigera</a>
+								<a href="#" class="pull-right btn btn-sm btn-primary" {{action 'enterGlobalEditMode'}}>Redigera <i class="fa fa-pencil last"></i></a>
 							{{/if}}
 						</div>
 					</div> 
@@ -53,6 +53,7 @@
 							</form>
 						</div> 
 						<div class="col-xs-4">
+							<form>
 							<h4>Arkivera:</h4> 
 							{{#if isEditingGlobalOrder}}
 								 <div class="checkbox">
@@ -61,9 +62,14 @@
 								    </label>
 								  </div>
 							{{else}}
-									{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
+								 <div class="checkbox">
+								    <label>
+								     	{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
+								    </label>
+								  </div>
+									
 							{{/if}}
-							
+							</form>
 						</div>
 
 					</div>

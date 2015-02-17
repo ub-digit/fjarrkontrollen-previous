@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ENV from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.Evented, {
-	needs: ['application'],
+	needs: ['application', 'fjarr-in.list'],
 	isComingFromScanning: false, 
 	isEditingGlobalOrder: false,
 	isNewMessageVisible: false,

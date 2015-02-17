@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import ResetScroll from "fjarrkontroll-cli/mixins/reset-scroll";
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScroll,{
 	model: function(param) {
 		return Ember.RSVP.hash({
 			order: this.store.find("order", param.id),
@@ -22,6 +23,7 @@ export default Ember.Route.extend({
 		controller.set("notes", models.notes);
 		controller.set("stickyNoteForThisOrder", controller.get("order.stickyNoteId"));
 		controller.set("langForStandardAnswer", 'Svenska');
+		console.log(this.controllerFor('fjarr-in.list').set("latestOrderViewed", models.order.get("orderNumber")));
 	},
 
 	deactivate: function() {

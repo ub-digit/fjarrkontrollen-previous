@@ -45,6 +45,12 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			}
 		});
 		controller.set("deliverySourcesActiveOnly", onlyActiveDeliverySources);
+
+		var tempArchivedFilter = [];
+		//archivedFilter.push(Ember.Object.create({id:1, label: 'Visa både aktiva och arkiverade', value: null}));
+		tempArchivedFilter.push(Ember.Object.create({id:1, label: 'Visa endast aktiva', value: false}));
+		tempArchivedFilter.push(Ember.Object.create({id:2, label: 'Visa endast arkiverade', value: true}));
+		controller.set("archivedFilter", tempArchivedFilter);
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {

@@ -4,6 +4,8 @@ export default Ember.Controller.extend({
 	needs: ['application'],
 	firstLoad: true, 
 	showOk: true, 
+	extraFilterVisible: false, 
+	latestOrderViewed: null,
 
 	zeroOrdersFound: function() {
 		if (this.get("model.length") === 0) {
@@ -20,6 +22,8 @@ export default Ember.Controller.extend({
 		user: null,
 		sortfield: 'order_number',
 		sortdir: 'DESC',
+		delivery_source: null,
+		is_archived: null,
 		page: 1
 	},
 	currentPage: 1, 
@@ -45,6 +49,9 @@ export default Ember.Controller.extend({
 
 	query: '', 
 
+	currentArchivedFilter: false, 
+
+
 	timeout: null,
 
 
@@ -52,6 +59,7 @@ export default Ember.Controller.extend({
 		this.set("filterToServer.page", this.get("currentPage"));
 		this.transitionToRoute("fjarr-in.index");
 	}.observes('currentPage'),
+
 
 	currentStatusChanged: function() {
 		if (dataLayer) {
@@ -128,6 +136,16 @@ export default Ember.Controller.extend({
 			this.set("filterToServer.search_term", '');
 		}
 
+		if (this.get("currentLocationSource")) {
+			this.set("filterToServer.delivery_source", this.get("currentLocationSource"));
+		}
+		else {
+			this.set("filterToServer.delivery_source", null);
+		}
+
+
+		this.set("filterToServer.is_archived", this.get("currentArchivedFilter"));
+
 		if (this.get("user.active") === true) {
 			if (this.get("session.userid")) {
 				this.set("filterToServer.user", this.get("session.userid"));
@@ -142,7 +160,7 @@ export default Ember.Controller.extend({
 
 		this.transitionToRoute("fjarr-in.index");
 	//	console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder'),
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder', 'currentLocationSource', 'currentArchivedFilter'),
 	
 
 	convertFilterVars: function() {
@@ -166,6 +184,26 @@ export default Ember.Controller.extend({
 	},
 
 	actions: {
+		toogleExtraFilter: function() {
+			if (this.get("extraFilterVisible")) {
+				this.set("extraFilterVisible", false);
+			}
+			else {
+				this.set("extraFilterVisible", true);
+			}			
+		},
+		resetFilter: function() {
+			this.set("currentLocation", this.controllerFor('application').get("defaultLocation"));
+			this.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
+			this.set("loan.active", true);
+			this.set("copy.active", true);
+			this.set("user.active", false);
+			this.set("currentArchivedFilter", false);
+			this.set("currentLocationSource", null);
+			this.set("query", '');
+
+
+		},
 		clearSearch: function() {
 			this.set("query", '');
 		},
