@@ -76,7 +76,7 @@
 								    	{{/if}}
 							    	</th>
 							    	<th>
-							    		Metadata
+							    		 
 							    	</th>
 							    	<th {{bind-attr class="sortCols.customer.active:active"}}>
 							    		<a href="javascript:void();" {{action 'sortMe' sortCols.customer}}>Låntagare</a>
@@ -112,9 +112,6 @@
 							    			</td>
 
 							    			<td>
-												{{#if item.isArchived}}
-								    				<i class="fa fa-archive" title="Ordern är arkiverad"></i>
-								    			{{/if}}
 								    			{{#if item.librisRequestId}}
 								    				<span class="badge">Libris</span>
 								    			{{/if}}
@@ -132,6 +129,9 @@
 										    					{{/if}}
 										    				</div>
 										    		</div>
+								    			{{/if}}
+												{{#if item.isArchived}}
+								    				<i class="fa fa-archive" title="Ordern är arkiverad"></i>
 								    			{{/if}}
 							    			</td>
 							    			<td>{{trim-string item.name}}</td>
