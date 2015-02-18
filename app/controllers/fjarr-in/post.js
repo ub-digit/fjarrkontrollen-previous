@@ -2,7 +2,7 @@ import Ember from 'ember';
 import ENV from '../../config/environment';
 
 export default Ember.Controller.extend(Ember.Evented, {
-	needs: ['application'],
+	needs: ['application', 'fjarr-in.list'],
 	isComingFromScanning: false, 
 	isEditingGlobalOrder: false,
 	isNewMessageVisible: false,
@@ -10,6 +10,16 @@ export default Ember.Controller.extend(Ember.Evented, {
 	addBibInfo: false,
 	bibInfo: "",
 	stickyNoteForThisOrder: null,
+
+
+	isToDisplayStandardAnswerInSwedish: function() {
+		if (this.get("langForStandardAnswer") === "Svenska") {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}.property('langForStandardAnswer'),
 
 	stickyNoteChanged: function() {
 		// change stickyNoteForOrder and save
@@ -23,6 +33,8 @@ export default Ember.Controller.extend(Ember.Evented, {
 		this.get("order").save().then(onSuccess, onError);
 	}.observes('stickyNoteForThisOrder'),
 
+
+
 	generateBibInfo: function() {
 		var title = "";
 		var customerStr = ""; 
@@ -30,25 +42,50 @@ export default Ember.Controller.extend(Ember.Evented, {
 		var journalTitle = "";
 		var ordernumberStr = "";
 
+
+
+
 		if (this.get("order.name")) {
-			customerStr = 'Låntagare: ' + this.get("order.name") + "\n";
+			var customerHeading = "Låntagare";
+			if (this.get("langForStandardAnswer") === "Engelska") {
+				customerHeading = "Patron";
+			}	
+			customerStr = customerHeading + ': ' + this.get("order.name") + "\n";
 		}
 		if (this.get("order.title")) {
-			title = 'Titel: ' + this.get("order.title") + "\n";
+			var titelHeading = "Titel";
+			if (this.get("langForStandardAnswer") === "Engelska") {
+				titelHeading = "Title";
+			}	
+			title = titelHeading + ': ' + this.get("order.title") + "\n";
 		}
 
 		if (this.get("order.orderNumber")) {
-			ordernumberStr = 'Ordernummer: ' + this.get("order.orderNumber") + "\n";
+			var orderHeading = "Ordernummer";
+			if (this.get("langForStandardAnswer") === "Engelska") {
+				orderHeading = "Ordernumber";
+			}
+				
+			ordernumberStr = orderHeading + ': ' + this.get("order.orderNumber") + "\n";
 		}
 
 		if (this.get("order.authors")) {
-			authorStr = 'Författare: ' + this.get("order.authors") + "\n";
+			var authorHeading = "Författare";
+			if (this.get("langForStandardAnswer") === "Engelska") {
+				authorHeading = "Author";
+			}
+				
+			authorStr = authorHeading + ': ' + this.get("order.authors") + "\n";
 		}
 		if (this.get("order.journalTitle")) {
-			journalTitle = 'Tidskriftstitel: ' + this.get("order.journalTitle") + "\n";
+			var journalHeading = "Tidskriftstitel";
+			if (this.get("langForStandardAnswer") === "Engelska") {
+				journalHeading = "Journal title";
+			}
+			journalTitle = journalHeading + ': ' + this.get("order.journalTitle") + "\n";
 		}
 
-		this.set("bibInfo", "\n\n" + 'BIBLIOGRAFISKA UPPGIFTER \n' + ordernumberStr + customerStr + title + authorStr +  journalTitle);
+		this.set("bibInfo", "\n\n" + '------------------------- \n' + ordernumberStr + customerStr + title + authorStr +  journalTitle + '------------------------- \n');
 	},
 
 	observeAddBibInfo: function() {
@@ -169,8 +206,14 @@ export default Ember.Controller.extend(Ember.Evented, {
 
 	updateEmailForm: function() {
 		this.set("addBibInfo", false);
-		this.set("emailmessage.subject", this.get("selectedAnswer.subjectSv"));
-		this.set("emailmessage.body", this.get("selectedAnswer.bodySv"));
+		if (this.get("langForStandardAnswer") === "Svenska") {
+			this.set("emailmessage.subject", this.get("selectedAnswer.subjectSv"));
+			this.set("emailmessage.body", this.get("selectedAnswer.bodySv"));
+		}
+		else {
+			this.set("emailmessage.subject", this.get("selectedAnswer.subjectEn"));
+			this.set("emailmessage.body", this.get("selectedAnswer.bodyEn"));
+		}
 		this.set("addBibInfo", true);
 
 	}.observes('selectedAnswer'),
@@ -189,6 +232,16 @@ export default Ember.Controller.extend(Ember.Evented, {
 	}.property('order.id'),
 	
 	actions: {
+		toggleLangForStandardAnswer: function() {
+			if (this.get('langForStandardAnswer') === 'Engelska') {
+				this.set("langForStandardAnswer", 'Svenska');
+			}
+			else {
+				this.set("langForStandardAnswer", 'Engelska');
+			}
+			
+		},
+
 
 		toggleStickyNote: function(noteId) {
 			if (this.get("stickyNoteForThisOrder") === noteId) {
@@ -213,7 +266,7 @@ export default Ember.Controller.extend(Ember.Evented, {
 			var self = this;
 			var onSuccess = function() {
 				self.turnOffLoading(id);
-				//self.set("controllers.application.message", "Order " + self.get("model.orderNumber") + " har sparats.");
+				self.send('refreshModel', id);
 			}
 			var onError = function() {
 			}

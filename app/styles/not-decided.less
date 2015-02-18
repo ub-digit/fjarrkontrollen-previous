@@ -4,7 +4,7 @@
 		margin-top: 2px;
 		padding: 5px;
 		right:16px;
-		top: 0;
+		top: 25px;
 		z-index: 100;
 		cursor: pointer;
 	}
@@ -12,7 +12,7 @@
 
 #global-spinner {
 	display: none;
-	position: absolute;
+	position: fixed;
 	left: 50%;
 	top: 50%;
 	width: 50px;
@@ -172,15 +172,40 @@ h1 {
 	margin-top: 30px;
 }
 
-
-#media-type-filter {
-	margin-top: 7px;
-	label {
-		margin-right: 10px;
-	}
+.top-space-15 {
+	margin-top: 15px;
 }
 
+.padding-top-25 {
+	padding-top: 25px;
+}
 
+#media-type-filter {
+	display: inline-block;
+	margin-right: 15px;
+	label {
+	}
+	border: 1px solid #ccc;
+	height: 34px;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+#owner-filter {
+	display: inline-block;
+	margin-right: 15px;
+	border: 1px solid #ccc;
+	height: 34px;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+#action-buttons {
+	display: inline-block;
+	button {
+		margin-right: 15px;
+	}
+}
 
 
 #feedback {

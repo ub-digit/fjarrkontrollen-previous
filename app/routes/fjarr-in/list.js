@@ -37,5 +37,8 @@ export default Ember.Route.extend({
 			controller.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
 		}
 
+		if (!controller.get("currentLocationSource")) {
+			controller.set("currentLocationSource", null);
+		}
 	}
 });
