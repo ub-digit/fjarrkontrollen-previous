@@ -36,30 +36,24 @@
 
 								<h4>Status: </h4> 
 								{{#if isEditingGlobalOrder}}
-									 {{view Ember.Select classNames="form-control" content=controllers.application.statusesActiveOnly optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId}}
+									 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId optionDisabledPath="content.isDisabled"}}
 								{{else}}
 									{{status-name order.statusId}}
 								{{/if}}
-								<h4>Utlånande bibliotek: </h4> 
+								<h4>Levererad från: </h4> 
 								{{#if isEditingGlobalOrder}}
-									{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+									 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
 								{{else}}
-									{{order.lendingLibrary}}
+									{{#if order.deliverySourceId}}
+										{{source-name order.deliverySourceId}}
+									{{else}}
+										Ej vald
+									{{/if}}
 								{{/if}}
 							</form>
 						</div> 
 						<div class="col-xs-4">
 							<form>
-							<h4>Levererad från: </h4> 
-							{{#if isEditingGlobalOrder}}
-								 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
-							{{else}}
-								{{#if order.deliverySourceId}}
-									{{source-name order.deliverySourceId}}
-								{{else}}
-									Ej vald
-								{{/if}}
-							{{/if}}
 							<h4>Arkivera:</h4> 
 							{{#if isEditingGlobalOrder}}
 								 <div class="checkbox">
@@ -74,6 +68,18 @@
 								    </label>
 								  </div>
 									
+							{{/if}}
+
+
+							<h4>Utlånande bibliotek: </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+							{{else}}
+								{{#if order.lendingLibrary}}
+									{{order.lendingLibrary}}
+								{{else}}
+									Ej angivet
+								{{/if}}
 							{{/if}}
 							</form>
 						</div>

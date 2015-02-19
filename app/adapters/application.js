@@ -19,3 +19,33 @@ DS.Model.reopen({
 	return parseInt(this.get('id'));
     }.property('id')
 });
+
+
+
+
+
+var get = Ember.get, getPath = Ember.getPath, set = Ember.set, fmt = Ember.String.fmt;
+ 
+Ember.Select.reopen({
+  optionDisabledPath: null
+});
+ 
+Ember.SelectOption.reopen({
+  attributeBindings: ['disabled'],
+ 
+  init: function() {
+    this.disabledPathDidChange();
+ 
+    this._super();
+  },
+ 
+  disabledPathDidChange: Ember.observer(function() {
+    var valuePath = get(this, 'parentView.optionDisabledPath');
+ 
+    if (!valuePath) { return; }
+ 
+    Ember.defineProperty(this, 'disabled', Ember.computed(function() {
+      return get(this, valuePath);
+    }).property(valuePath));
+  })
+});
