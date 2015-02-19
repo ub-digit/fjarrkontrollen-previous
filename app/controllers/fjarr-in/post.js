@@ -219,12 +219,12 @@ export default Ember.Controller.extend(Ember.Evented, {
 	}.observes('selectedAnswer'),
 
 	turnOnLoading: function(id) {
-		$("#" + id).addClass("loading");
+		$("body").addClass("loading");
 	},
 
 
 	turnOffLoading: function(id) {
-		$("#" + id).removeClass("loading");
+		$("body").removeClass("loading");
 	},
 
 	getPrintUrl: function() {
