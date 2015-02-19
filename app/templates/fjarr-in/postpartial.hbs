@@ -156,16 +156,6 @@
 										</td>
 									</tr>
 
-									<tr  title="Leveransalternativ">
-										<th>Leveransalternativ: </th>
-										<td>
-											{{#if isEditingGlobalOrder}}
-												{{input classNames="form-control" type="text" value=order.deliveryPlace}}
-											{{else}}
-												{{order.deliveryPlace}}
-											{{/if}}
-										</td>
-									</tr>
 									<tr  title="ISSN/ISBN">
 										<th>ISSN/ISBN: </th>
 										<td>
@@ -176,28 +166,16 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="Beställningstyp">
-										<th>Beställningstyp: </th>
+									<tr  title="Tidskriftstitel">
+										<th>Tidskriftstitel: </th>
 										<td>
 											{{#if isEditingGlobalOrder}}
-												{{view Ember.Select classNames="form-control" content=typeOfOrder optionValuePath="content.value" optionLabelPath="content.label" value=order.orderTypeId}}
+												{{input classNames="form-control" type="text" value=order.journalTitle}}
 											{{else}}
-												{{ordertype-name order.orderTypeId}}
+												{{order.journalTitle}}
 											{{/if}}
 										</td>
-
 									</tr>
-									<tr  title="Volym">
-										<th>Volym: </th>
-										<td>
-											{{#if isEditingGlobalOrder}}
-												{{input classNames="form-control" type="text" value=order.volume}}
-											{{else}}
-												{{order.volume}}
-											{{/if}}
-										</td>
-
-
 									</tr>
 									<tr  title="Publiceringsår">
 										<th>Publiceringsår: </th>
@@ -209,6 +187,16 @@
 											{{/if}}
 										</td>
 									</tr>
+									<tr  title="Volym">
+										<th>Volym: </th>
+										<td>
+											{{#if isEditingGlobalOrder}}
+												{{input classNames="form-control" type="text" value=order.volume}}
+											{{else}}
+												{{order.volume}}
+											{{/if}}
+										</td>
+
 									<tr  title="Nummer">
 										<th>Nummer: </th>
 										<td>
@@ -231,13 +219,23 @@
 										</td>
 
 									</tr>
-									<tr  title="Tidskriftstitel">
-										<th>Tidskriftstitel: </th>
+									<tr  title="Beställningstyp">
+										<th>Beställningstyp: </th>
 										<td>
 											{{#if isEditingGlobalOrder}}
-												{{input classNames="form-control" type="text" value=order.journalTitle}}
+												{{view Ember.Select classNames="form-control" content=typeOfOrder optionValuePath="content.value" optionLabelPath="content.label" value=order.orderTypeId}}
 											{{else}}
-												{{order.journalTitle}}
+												{{ordertype-name order.orderTypeId}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Leveransalternativ">
+										<th>Leveransalternativ: </th>
+										<td>
+											{{#if isEditingGlobalOrder}}
+												{{input classNames="form-control" type="text" value=order.deliveryPlace}}
+											{{else}}
+												{{order.deliveryPlace}}
 											{{/if}}
 										</td>
 									</tr>
