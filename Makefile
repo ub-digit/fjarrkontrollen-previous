@@ -36,4 +36,4 @@ live:
 	./create-deploy-info.sh
 	ember build --environment=production-live
 	mv deploy-info.txt dist
-    scp -r $(DISTDIR)/* apps-user@$(LIVE_SERVER):$(LIVE_DESTDIR)/
+	scp -r $(DISTDIR)/* apps-user@$(LIVE_SERVER):$(LIVE_DESTDIR)/
