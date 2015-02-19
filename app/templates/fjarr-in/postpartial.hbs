@@ -407,14 +407,6 @@
 											<td>{{order.formLang}}</td>
 										{{/if}}			
 									</tr>
-									<tr  title="Namn, faktura">
-										<th>Namn, faktura: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
-										{{else}}
-											<td>{{order.invoicingName}}</td>
-										{{/if}}							
-									</tr>
 									<tr  title="Ansvarsnummer och beställarid">
 										<th>Ansvarsnummer och beställarid: </th>
 										{{#if isEditingGlobalOrder}}
@@ -422,6 +414,14 @@
 										{{else}}
 											<td>{{order.invoicingId}}</td>
 										{{/if}}		
+									</tr>
+									<tr  title="Namn, faktura">
+										<th>Namn, faktura: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
+										{{else}}
+											<td>{{order.invoicingName}}</td>
+										{{/if}}							
 									</tr>
 									<tr  title="Adress, faktura">
 										<th>Adress, faktura: </th>
