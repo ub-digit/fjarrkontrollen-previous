@@ -19,7 +19,6 @@ export default DS.Model.extend({
 	orderOutsideScandinavia 			: 		DS.attr('boolean'),
 	emailConfirmation 					: 		DS.attr('boolean'),
 	notValidAfter 						: 		DS.attr('string'),
-	deliveryType 						: 		DS.attr('string'),
 	name 								: 		DS.attr("string"), 
 	company1 							: 		DS.attr('string'),
 	company2 							: 		DS.attr('string'),
