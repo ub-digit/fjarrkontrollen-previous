@@ -23,7 +23,7 @@ export default Ember.Route.extend(ResetScroll,{
 		controller.set("notes", models.notes);
 		controller.set("stickyNoteForThisOrder", controller.get("order.stickyNoteId"));
 		controller.set("langForStandardAnswer", 'Svenska');
-		console.log(this.controllerFor('fjarr-in.list').set("latestOrderViewed", models.order.get("orderNumber")));
+		//console.log(this.controllerFor('fjarr-in.list').set("latestOrderViewed", models.order.get("orderNumber")));
 	},
 
 	deactivate: function() {
