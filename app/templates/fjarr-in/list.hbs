@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="row">
-				<div class="col-xs-2">	
+				<div class="col-xs-2">
 					<label>Bibliotek</label>
 					{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentLocation}}
 				</div>
@@ -31,13 +31,13 @@
 					</form>
 					<form  id="owner-filter" class="form form-inline" role="form">
 						<label>
-							Mina ordrar						
+							Mina ordrar
 							{{view Ember.Checkbox checked=user.active}}
 						</label>
 					</form>
 					<div id="action-buttons">
 						<button class="btn btn-primary" {{action 'resetFilter'}} title="Återställ filter"><span>Återställ filter</span> <i class="fa fa-undo"></i></button>
-						{{#if extraFilterVisible}} 
+						{{#if extraFilterVisible}}
 							<button class="btn btn-primary" {{action 'toogleExtraFilter'}} title="Visa fler filter">Färre filter <i class="fa fa-minus"></i></button>
 						{{else}}
 							<button class="btn btn-primary" {{action 'toogleExtraFilter'}} title="Göm filter">Fler filter <i class="fa fa-plus"></i></button>
@@ -65,18 +65,23 @@
 							Fjärrkontrollen hittade <strong>{{model.meta.query.total}} </strong>ordrar
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-12 center-within">
+							{{pagination-pager pagination=model.meta.pagination currentpage=currentPage}}
+						</div>
+					</div>
 					<div class="row padding-top-25">
 						<div class="col-xs-12">
 							<table class="table table-striped table-condensed">
 						    	<tr>
 							    	<th {{bind-attr class=":ordernumber sortCols.ordernumber.active:active"}}>
-							    		<a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a> 
+							    		<a href="javascript:void();" {{action 'sortMe' sortCols.ordernumber}}>Ordernummer</a>
 								    	{{#if sortCols.ordernumber.active}}
 								    		{{get-sort-dir-arrow sortCols.ordernumber.sortDir}}
 								    	{{/if}}
 							    	</th>
 							    	<th>
-							    		 
+
 							    	</th>
 							    	<th {{bind-attr class="sortCols.customer.active:active"}}>
 							    		<a href="javascript:void();" {{action 'sortMe' sortCols.customer}}>Låntagare</a>
@@ -102,13 +107,13 @@
 								    		{{get-sort-dir-arrow sortCols.status.sortDir}}
 								    	{{/if}}
 							    	</th>
-							    	<th>Handläggare</th>	
+							    	<th>Handläggare</th>
 						    	</tr>
 								{{#each item in model}}
 
 										<tr class="{{unbound mark-if-last-order-visisted item.orderNumber}}">
 							    			<td>
-							    			{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}} 
+							    			{{#link-to 'fjarr-in.post' item.id}}{{item.orderNumber}}{{/link-to}}
 							    			</td>
 
 							    			<td>
@@ -144,7 +149,7 @@
 											<td>
 												<i {{bind-attr id=item.id}} class="fa fa-spinner"></i>
 												<div class="btn-group">
-												  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+												  <button type="button" {{bind-attr class=":btn :btn-xs :dropdown-toggle item.userId:btn-info:btn-default"}} data-toggle="dropdown">
 												  {{#if item.userId}}
 												  	{{user-name item.userId}} <span class="caret"></span>
 												  {{else}}
@@ -154,13 +159,13 @@
 												  <ul class="dropdown-menu" role="menu">
 												    <li><a href="#" {{action 'switchOwner' item.id session.userid}} {{session.username}}</a>
 												   	</li>
-												    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>	
+												    <li><a {{action 'removeOwner' item.id}} href="#">Släpp order</a></li>
 												  </ul>
 												</div>
 											</td>
 							    		</tr>
 							    	{{/each}}
-						    </table> 
+						    </table>
 					    </div>
 				    </div>
 				   {{else}}
@@ -174,7 +179,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 center-within">
-			{{pagination-pager pagination=model.meta.pagination currentpage=currentPage}}					
+			{{pagination-pager pagination=model.meta.pagination currentpage=currentPage}}
 		</div>
 	</div>
 </div>
