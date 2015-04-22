@@ -15,6 +15,7 @@
   border: 1px solid transparent;
   border-right: none;
   border-left: none;
+  border-top: 4px solid #000 !important;
 
   // Prevent floats from breaking the navbar
   &:extend(.clearfix all);
@@ -392,7 +393,7 @@
 // Default navbar
 .navbar-default {
   background-color: @navbar-default-bg;
-  border-color: #ccc;
+  border-color: @navbar-default-border;
 
   .navbar-brand {
     color: @navbar-default-brand-color;
@@ -419,7 +420,6 @@
       }
       &.active {
         font-weight: bolder;
-        border-bottom: 2px solid @brand-primary;
       }
     }
     > .active > a {
