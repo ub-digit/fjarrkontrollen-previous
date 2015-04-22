@@ -70,7 +70,6 @@
 									
 							{{/if}}
 
-
 							<h4>Utlånande bibliotek: </h4> 
 							{{#if isEditingGlobalOrder}}
 								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
@@ -81,6 +80,28 @@
 									Ej angivet
 								{{/if}}
 							{{/if}}
+
+							<h4>Lånetid (dagar): </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.loanPeriod}}
+							{{else}}
+								{{#if order.loanPeriod}}
+									{{order.loanPeriod}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}
+
+							<h4>Pris (SEK): </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.price}}
+							{{else}}
+								{{#if order.price}}
+									{{order.price}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}									
 							</form>
 						</div>
 
@@ -295,10 +316,9 @@
 											{{else}}
 												{{order.notValidAfter}}
 											{{/if}}
-
 										</td>
-							
 									</tr>
+
 								</table>
 							</div> <!-- end panel --> 
 						</div>

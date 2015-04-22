@@ -48,5 +48,7 @@ export default DS.Model.extend({
 	librisRequestId						: 		DS.attr('string'),
 	librisid						    : 		DS.attr('string'),
 	librismisc						    : 		DS.attr('string'),
-	lendingLibrary					    : 		DS.attr('string')
+	lendingLibrary					    : 		DS.attr('string'),
+	loanPeriod						    : 		DS.attr('number'),
+	price							    : 		DS.attr('number')
 });
