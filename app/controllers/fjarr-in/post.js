@@ -227,10 +227,14 @@ export default Ember.Controller.extend(Ember.Evented, {
 		$("body").removeClass("loading");
 	},
 
-	getPrintUrl: function() {
+	getPrintOrderUrl: function() {
 		return ENV.APP.serviceURL + "/orders/" + this.get("order.id") + ".pdf?token="+ this.get("session").get("token");
 	}.property('order.id'),
-	
+
+	getPrintDeliveryNoteUrl: function() {
+		return ENV.APP.serviceURL + "/orders/" + this.get("order.id") + ".pdf?token="+ this.get("session").get("token") + "&layout=delivery_note";
+	}.property('order.id'),	
+
 	actions: {
 		toggleLangForStandardAnswer: function() {
 			if (this.get('langForStandardAnswer') === 'Engelska') {
