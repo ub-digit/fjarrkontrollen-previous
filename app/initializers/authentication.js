@@ -9,9 +9,10 @@ var CustomAuthenticator = Base.extend({
 			type: 'GET',
 			url: ENV.APP.authenticationBaseURL+'/'+properties.token
 		    }).then(function() {
-			resolve(properties);
+				resolve(properties);
+	
 		    }, function() {
-			reject();
+				reject();
 		    });
 		});
     },
@@ -53,7 +54,6 @@ var CustomAuthenticator = Base.extend({
 
 export var initialize = function(container) {
   container.register('authenticator:custom', CustomAuthenticator);
-
 };
 
 export default {
