@@ -73,6 +73,5 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			}
 			Ember.run.later(this,this._super(), 100);
 		}
-    
 	}
 });
