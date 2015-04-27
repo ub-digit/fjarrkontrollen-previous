@@ -9,9 +9,10 @@ var CustomAuthenticator = Base.extend({
 			type: 'GET',
 			url: ENV.APP.authenticationBaseURL+'/'+properties.token
 		    }).then(function() {
-			resolve(properties);
+				resolve(properties);
+	
 		    }, function() {
-			reject();
+				reject();
 		    });
 		});
     },
@@ -29,12 +30,12 @@ var CustomAuthenticator = Base.extend({
 			var token = response.access_token;
 			Ember.run(function() {
 			    resolve({
-				authenticated: true,
-				token: token,
-				userLocationId: response.user.location_id,
-				username: response.user.xkonto,
-				userid: response.user.id,
-				name: response.user.name
+					authenticated: true,
+					token: token,
+					userLocationId: response.user.location_id,
+					username: response.user.xkonto,
+					userid: response.user.id,
+					name: response.user.name
 			    });
 			});
 		    }, function(xhr, status, error) {
@@ -53,7 +54,6 @@ var CustomAuthenticator = Base.extend({
 
 export var initialize = function(container) {
   container.register('authenticator:custom', CustomAuthenticator);
-
 };
 
 export default {

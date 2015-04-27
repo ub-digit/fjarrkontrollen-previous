@@ -14,6 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 			delivery_sources: this.store.find('delivery_source'),
 		});
 	},
+
 	setupController: function(controller, models) {
 
 		controller.set('defaultStatusGroup', 'all');
@@ -51,6 +52,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 		tempArchivedFilter.push(Ember.Object.create({id:1, label: 'Visa endast aktiva', value: false}));
 		tempArchivedFilter.push(Ember.Object.create({id:2, label: 'Visa endast arkiverade', value: true}));
 		controller.set("archivedFilter", tempArchivedFilter);
+
+		if (dataLayer) {
+			if (this.get("session.userLocationId")) {
+				var locationid = this.get("session").get("userLocationId");
+				var location = this.controllerFor("application").get("locations").findBy("id", locationid.toString());
+				if (location) {
+					var label = location.get("label");
+					dataLayer.push({'userDefaultLocation': label});
+				}
+			}
+
+			
+		}
 	},
 	actions: {
 		sessionAuthenticationSucceeded: function() {

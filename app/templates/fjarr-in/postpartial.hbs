@@ -3,7 +3,8 @@
 		<div class="col-xs-12">
 			<a href="javascript:window.history.go(-1)"><i class="fa fa-chevron-left"></i> Tillbaka</a>
 			<div class="topbar-actions pull-right">
-				<a target="_blank" href="{{unbound getPrintUrl}}" ><i class="fa fa-print"></i> Skriv ut</a>
+				<a target="_blank" href="{{unbound getPrintOrderUrl}}" ><i class="fa fa-print"></i> Skriv ut beställning</a>
+				<a target="_blank" href="{{unbound getPrintDeliveryNoteUrl}}" ><i class="fa fa-print"></i> Skriv ut följesedel</a>
 			</div>
 		</div>
 	</div>
@@ -25,7 +26,7 @@
 						</div>
 					</div> 
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-4">
 							<form class="form-inline">
 								<h4>Handläggande enhet:</h4>
 								{{#if isEditingGlobalOrder}}
@@ -34,12 +35,42 @@
 									{{location-name order.locationId}}
 								{{/if}}
 
-								<h4>Status: </h4> 
+								<h4>Status:</h4> 
 								{{#if isEditingGlobalOrder}}
 									 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId optionDisabledPath="content.isDisabled"}}
 								{{else}}
 									{{status-name order.statusId}}
 								{{/if}}
+
+								<h4>Arkivera:</h4> 
+								{{#if isEditingGlobalOrder}}
+								 <div class="checkbox">
+								    <label>
+								      {{input type="checkbox" checked=order.isArchived}} Arkiverad
+								    </label>
+								  </div>
+								{{else}}
+								<div class="checkbox">
+								    <label>
+								     	{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
+								    </label>
+								</div>
+								{{/if}}
+							</form>
+						</div> 
+
+						<div class="col-xs-4">
+							<form class="form-inline">
+							<h4>Utlånande bibliotek: </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+							{{else}}
+								{{#if order.lendingLibrary}}
+									{{order.lendingLibrary}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}
 								<h4>Levererad från: </h4> 
 								{{#if isEditingGlobalOrder}}
 									 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
@@ -54,33 +85,44 @@
 						</div> 
 						<div class="col-xs-4">
 							<form>
-							<h4>Arkivera:</h4> 
-							{{#if isEditingGlobalOrder}}
-								 <div class="checkbox">
-								    <label>
-								      {{input type="checkbox" checked=order.isArchived}} Arkiverad
-								    </label>
-								  </div>
-							{{else}}
-								 <div class="checkbox">
-								    <label>
-								     	{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
-								    </label>
-								  </div>
-									
-							{{/if}}
 
 
-							<h4>Utlånande bibliotek: </h4> 
+							<h4>Lånetid: </h4> 
 							{{#if isEditingGlobalOrder}}
-								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+								{{input classNames="form-control input-sm" type="text" value=order.loanPeriod}}
 							{{else}}
-								{{#if order.lendingLibrary}}
-									{{order.lendingLibrary}}
+								{{#if order.loanPeriod}}
+									{{order.loanPeriod}}
 								{{else}}
 									Ej angivet
 								{{/if}}
 							{{/if}}
+
+							<h4>Pris (SEK): </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.price}}
+							{{else}}
+								{{#if order.price}}
+									{{order.price}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}
+
+							<h4>Ska faktureras: </h4> 
+								{{#if isEditingGlobalOrder}}
+								 <div class="checkbox">
+								    <label>
+								      {{input type="checkbox" checked=order.toBeInvoiced}} Ska faktureras
+								    </label>
+								  </div>
+								{{else}}
+								<div class="checkbox">
+								    <label>
+								     	{{input type="checkbox" disabled="true" checked=order.toBeInvoiced}} Ska faktureras
+								    </label>
+								</div>
+								{{/if}}
 							</form>
 						</div>
 
@@ -295,21 +337,9 @@
 											{{else}}
 												{{order.notValidAfter}}
 											{{/if}}
-
-										</td>
-							
-									</tr>
-									<tr  title="Handläggning">
-										<th>Handläggning: </th>
-										<td>
-											{{#if isEditingGlobalOrder}}
-												{{input classNames="form-control" type="text" value=order.deliveryType}}
-											{{else}}
-												{{order.deliveryType}}
-											{{/if}}
-
 										</td>
 									</tr>
+
 								</table>
 							</div> <!-- end panel --> 
 						</div>
@@ -407,14 +437,6 @@
 											<td>{{order.formLang}}</td>
 										{{/if}}			
 									</tr>
-									<tr  title="Namn, faktura">
-										<th>Namn, faktura: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
-										{{else}}
-											<td>{{order.invoicingName}}</td>
-										{{/if}}							
-									</tr>
 									<tr  title="Ansvarsnummer och beställarid">
 										<th>Ansvarsnummer och beställarid: </th>
 										{{#if isEditingGlobalOrder}}
@@ -422,6 +444,14 @@
 										{{else}}
 											<td>{{order.invoicingId}}</td>
 										{{/if}}		
+									</tr>
+									<tr  title="Namn, faktura">
+										<th>Namn, faktura: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
+										{{else}}
+											<td>{{order.invoicingName}}</td>
+										{{/if}}							
 									</tr>
 									<tr  title="Adress, faktura">
 										<th>Adress, faktura: </th>

@@ -1,21 +1,27 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{#link-to 'index' class="navbar-brand"}}
+      Fjärrkontrollen
+      {{/link-to}}
+    </div>
+    <ul class="nav navbar-nav">
+      {{#if session.isAuthenticated}}
+      <li>
+        {{#link-to 'fjarr-in'}}Fjärr in
+        {{/link-to}}
+      </li>
+      <li>
+        <a href="#" {{action 'triggerModal'}}><i class="fa fa-barcode"></i> Scanna Streckkod</a>
+      </li>
+      {{/if}}
+    </ul>
 
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
-      <ul class="nav navbar-nav">
-        <li>
-          {{#link-to 'fjarr-in'}}Fjärr in          
-          {{/link-to}}
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#" {{action 'triggerModal'}}><i class="fa fa-barcode"></i> Scanna Streckkod </a>
-        </li>
-      </ul>
-
-        
-
-    </div><!-- /.container -->    
+    <div class="user-auth pull-right">
+      {{#if session.isAuthenticated}}
+        <p class="pull-right">{{session.name}} (<small><a href="javascript:void(0)" {{action 'invalidateSession'}}>Logga ut</a></small>)</p>
+      {{else}}
+        <p class="pull-right">{{link-to "Logga in" 'login'}}</p>
+      {{/if}}
+    </div>
   </nav>
-
