@@ -26,7 +26,7 @@
 						</div>
 					</div> 
 					<div class="row">
-						<div class="col-xs-8">
+						<div class="col-xs-4">
 							<form class="form-inline">
 								<h4>Handläggande enhet:</h4>
 								{{#if isEditingGlobalOrder}}
@@ -35,12 +35,42 @@
 									{{location-name order.locationId}}
 								{{/if}}
 
-								<h4>Status: </h4> 
+								<h4>Status:</h4> 
 								{{#if isEditingGlobalOrder}}
 									 {{view Ember.Select classNames="form-control" content=controllers.application.statuses optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.statusId optionDisabledPath="content.isDisabled"}}
 								{{else}}
 									{{status-name order.statusId}}
 								{{/if}}
+
+								<h4>Arkivera:</h4> 
+								{{#if isEditingGlobalOrder}}
+								 <div class="checkbox">
+								    <label>
+								      {{input type="checkbox" checked=order.isArchived}} Arkiverad
+								    </label>
+								  </div>
+								{{else}}
+								<div class="checkbox">
+								    <label>
+								     	{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
+								    </label>
+								</div>
+								{{/if}}
+							</form>
+						</div> 
+
+						<div class="col-xs-4">
+							<form class="form-inline">
+							<h4>Utlånande bibliotek: </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
+							{{else}}
+								{{#if order.lendingLibrary}}
+									{{order.lendingLibrary}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}
 								<h4>Levererad från: </h4> 
 								{{#if isEditingGlobalOrder}}
 									 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
@@ -55,32 +85,7 @@
 						</div> 
 						<div class="col-xs-4">
 							<form>
-							<h4>Arkivera:</h4> 
-							{{#if isEditingGlobalOrder}}
-								 <div class="checkbox">
-								    <label>
-								      {{input type="checkbox" checked=order.isArchived}} Arkiverad
-								    </label>
-								  </div>
-							{{else}}
-								 <div class="checkbox">
-								    <label>
-								     	{{input type="checkbox" disabled="true" checked=order.isArchived}} Arkiverad
-								    </label>
-								  </div>
-									
-							{{/if}}
 
-							<h4>Utlånande bibliotek: </h4> 
-							{{#if isEditingGlobalOrder}}
-								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
-							{{else}}
-								{{#if order.lendingLibrary}}
-									{{order.lendingLibrary}}
-								{{else}}
-									Ej angivet
-								{{/if}}
-							{{/if}}
 
 							<h4>Lånetid: </h4> 
 							{{#if isEditingGlobalOrder}}
@@ -102,7 +107,22 @@
 								{{else}}
 									Ej angivet
 								{{/if}}
-							{{/if}}									
+							{{/if}}
+
+							<h4>Ska faktureras: </h4> 
+								{{#if isEditingGlobalOrder}}
+								 <div class="checkbox">
+								    <label>
+								      {{input type="checkbox" checked=order.toBeInvoiced}} Ska faktureras
+								    </label>
+								  </div>
+								{{else}}
+								<div class="checkbox">
+								    <label>
+								     	{{input type="checkbox" disabled="true" checked=order.toBeInvoiced}} Ska faktureras
+								    </label>
+								</div>
+								{{/if}}
 							</form>
 						</div>
 

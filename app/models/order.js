@@ -50,5 +50,6 @@ export default DS.Model.extend({
 	librismisc						    : 		DS.attr('string'),
 	lendingLibrary					    : 		DS.attr('string'),
 	loanPeriod						    : 		DS.attr('string'),
-	price							    : 		DS.attr('number')
+	price							    : 		DS.attr('number'),
+	toBeInvoiced					    : 		DS.attr('boolean')
 });
