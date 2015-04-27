@@ -3,8 +3,11 @@
 		<div class="col-xs-12">
 			<a href="javascript:window.history.go(-1)"><i class="fa fa-chevron-left"></i> Tillbaka</a>
 			<div class="topbar-actions pull-right">
-				<a target="_blank" href="{{unbound getPrintOrderUrl}}" ><i class="fa fa-print"></i> Skriv ut beställning</a>
-				<a target="_blank" href="{{unbound getPrintDeliveryNoteUrl}}" ><i class="fa fa-print"></i> Skriv ut följesedel</a>
+				<ul class="list-unstyled">
+					<li><a target="_blank" href="{{unbound getPrintOrderUrl}}" ><i class="fa fa-print"></i> Beställning</a></li>
+					<li><a target="_blank" href="{{unbound getPrintDeliveryNoteUrl}}" ><i class="fa fa-print"></i> Bokslip</a></li>
+				</ul>
+
 			</div>
 		</div>
 	</div>
@@ -26,7 +29,7 @@
 						</div>
 					</div> 
 					<div class="row">
-						<div class="col-xs-4">
+						<div class="col-xs-6">
 							<form class="form-inline">
 								<h4>Handläggande enhet:</h4>
 								{{#if isEditingGlobalOrder}}
@@ -59,37 +62,14 @@
 							</form>
 						</div> 
 
-						<div class="col-xs-4">
-							<form class="form-inline">
-							<h4>Utlånande bibliotek: </h4> 
-							{{#if isEditingGlobalOrder}}
-								{{input classNames="form-control input-sm" type="text" value=order.lendingLibrary}}
-							{{else}}
-								{{#if order.lendingLibrary}}
-									{{order.lendingLibrary}}
-								{{else}}
-									Ej angivet
-								{{/if}}
-							{{/if}}
-								<h4>Levererad från: </h4> 
-								{{#if isEditingGlobalOrder}}
-									 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
-								{{else}}
-									{{#if order.deliverySourceId}}
-										{{source-name order.deliverySourceId}}
-									{{else}}
-										Ej vald
-									{{/if}}
-								{{/if}}
-							</form>
-						</div> 
-						<div class="col-xs-4">
+
+						<div class="col-xs-6">
 							<form>
 
 
-							<h4>Lånetid: </h4> 
+							<h4>Återlämningsdatum: </h4> 
 							{{#if isEditingGlobalOrder}}
-								{{input classNames="form-control input-sm" type="text" value=order.loanPeriod}}
+								{{input classNames="form-control" type="text" value=order.loanPeriod}}
 							{{else}}
 								{{#if order.loanPeriod}}
 									{{order.loanPeriod}}
@@ -100,12 +80,33 @@
 
 							<h4>Pris (SEK): </h4> 
 							{{#if isEditingGlobalOrder}}
-								{{input classNames="form-control input-sm" type="text" value=order.price}}
+								{{input classNames="form-control" type="text" value=order.price}}
 							{{else}}
 								{{#if order.price}}
 									{{order.price}}
 								{{else}}
 									Ej angivet
+								{{/if}}
+							{{/if}}
+
+							<h4>Utlånande bibliotek: </h4> 
+							{{#if isEditingGlobalOrder}}
+								{{input classNames="form-control" type="text" value=order.lendingLibrary}}
+							{{else}}
+								{{#if order.lendingLibrary}}
+									{{order.lendingLibrary}}
+								{{else}}
+									Ej angivet
+								{{/if}}
+							{{/if}}
+							<h4>Levererad från: </h4> 
+							{{#if isEditingGlobalOrder}}
+								 {{view Ember.Select classNames="form-control" content=controllers.application.deliverySourcesActiveOnly optionValuePath="content.id" optionLabelPath="content.name" value=order.deliverySourceId prompt='Ej vald'}}
+							{{else}}
+								{{#if order.deliverySourceId}}
+									{{source-name order.deliverySourceId}}
+								{{else}}
+									Ej vald
 								{{/if}}
 							{{/if}}
 
@@ -123,6 +124,8 @@
 								    </label>
 								</div>
 								{{/if}}
+
+
 							</form>
 						</div>
 
