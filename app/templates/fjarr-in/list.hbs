@@ -55,6 +55,15 @@
 					<label>Arkiverade & Aktiva</label>
 						 {{view Ember.Select classNames="form-control" content=controllers.application.archivedFilter optionValuePath="content.value" optionLabelPath="content.label" value=currentArchivedFilter prompt='Visa både aktiva och arkiverade'}}
 					</div>
+					<div class="col-xs-3">
+						<form  id="tobeinvoiced-filter" class="form form-inline" role="form">
+						<label>
+							Skall faktureras
+							{{view Ember.Checkbox checked=currentToBeInvoicedFilter}}
+						</label>
+					</form>
+				</div>
+
 				</div>
 			{{/if}}
 			<div class="row top-space-30">

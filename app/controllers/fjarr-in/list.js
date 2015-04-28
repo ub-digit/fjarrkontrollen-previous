@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
 		sortdir: 'DESC',
 		delivery_source: null,
 		is_archived: null,
+		to_be_invoiced: null,
 		page: 1
 	},
 	currentPage: 1, 
@@ -50,6 +51,8 @@ export default Ember.Controller.extend({
 	query: '', 
 
 	currentArchivedFilter: false, 
+
+	currentToBeInvoicedFilter: null, 
 
 
 	timeout: null,
@@ -146,6 +149,14 @@ export default Ember.Controller.extend({
 
 		this.set("filterToServer.is_archived", this.get("currentArchivedFilter"));
 
+		if (this.get("currentToBeInvoicedFilter")) {
+    		this.set("filterToServer.to_be_invoiced", this.get("currentToBeInvoicedFilter"));
+		}
+		else {
+			this.set("filterToServer.to_be_invoiced", null);
+		}
+
+
 		if (this.get("user.active") === true) {
 			if (this.get("session.userid")) {
 				this.set("filterToServer.user", this.get("session.userid"));
@@ -160,7 +171,7 @@ export default Ember.Controller.extend({
 
 		this.transitionToRoute("fjarr-in.index");
 	//	console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder', 'currentLocationSource', 'currentArchivedFilter'),
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder', 'currentLocationSource', 'currentArchivedFilter', 'currentToBeInvoicedFilter'),
 	
 
 	convertFilterVars: function() {
@@ -199,6 +210,7 @@ export default Ember.Controller.extend({
 			this.set("copy.active", true);
 			this.set("user.active", false);
 			this.set("currentArchivedFilter", false);
+			this.set("currentToBeInvoicedFilter", null);
 			this.set("currentLocationSource", null);
 			this.set("query", '');
 
