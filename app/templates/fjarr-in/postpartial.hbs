@@ -318,20 +318,6 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="E-postkvittens">
-										<th>E-postkvittens: </th>
-										<td>
-											{{#if isEditingGlobalOrder}}
-												{{view Ember.Select classNames="form-control" content=emailConfirmation optionValuePath="content.value" optionLabelPath="content.label" value=order.emailConfirmation}}
-											{{else}}
-												{{#if order.emailConfirmation}}
-													<i class="fa fa-check"></i>
-												{{else}}
-													<i class="fa fa-times"></i>
-												{{/if}}
-											{{/if}}
-										</td>
-									</tr>
 									<tr  title="Ej aktuell efter">
 										<th>Ej aktuell efter: </th>
 										<td>
@@ -342,7 +328,14 @@
 											{{/if}}
 										</td>
 									</tr>
-
+									<tr  title="Kommentar">
+										<th>Kommentar: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.comments}}</td>
+										{{else}}
+											<td>{{order.comments}}</td>
+										{{/if}}								
+									</tr>
 								</table>
 							</div> <!-- end panel --> 
 						</div>
@@ -366,16 +359,16 @@
 											<td>{{order.name}}</td>
 										{{/if}}
 									</tr>
-									<tr  title="Adress 1">
-										<th>Adress: </th>
+									<tr  title="Organisation">
+										<th>Organisation: </th>
 										{{#if isEditingGlobalOrder}}
 											<td>{{input classNames="form-control" type="text" value=order.company1}}</td>
 										{{else}}
 											<td>{{order.company1}}</td>
 										{{/if}}
 									</tr>
-									<tr  title="Adress 2">
-										<th>&nbsp;</th>
+									<tr  title="Institution">
+										<th>Institution: </th>
 										{{#if isEditingGlobalOrder}}
 											<td>{{input classNames="form-control" type="text" value=order.company2}}</td>
 										{{else}}
@@ -383,8 +376,8 @@
 										{{/if}}
 										
 									</tr>
-									<tr  title="Adress 3">
-										<th>&nbsp;</th>
+									<tr  title="Avdelning">
+										<th>Avdelning: </th>
 										{{#if isEditingGlobalOrder}}
 											<td>{{input classNames="form-control" type="text" value=order.company3}}</td>
 										{{else}}
@@ -432,14 +425,7 @@
 											<td>{{order.customerType}}</td>
 										{{/if}}						
 									</tr>
-									<tr  title="Kommentar">
-										<th>Kommentar: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.comments}}</td>
-										{{else}}
-											<td>{{order.comments}}</td>
-										{{/if}}								
-									</tr>
+
 									<tr  title="Språkval i formulär">
 										<th>Språkval i formulär: </th>
 										{{#if isEditingGlobalOrder}}
