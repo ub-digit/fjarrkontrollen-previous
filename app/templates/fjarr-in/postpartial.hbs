@@ -416,6 +416,14 @@
 											<td>{{order.libraryCardNumber}}</td>
 										{{/if}}
 									</tr>
+									<tr  title="X-konto">
+										<th>X-konto: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.xAccount}}</td>
+										{{else}}
+											<td>{{order.xAccount}}</td>
+										{{/if}}
+									</tr>									
 									<tr  title="Kundtyp">
 										<th>Kundtyp: </th>
 										{{#if isEditingGlobalOrder}}
@@ -432,13 +440,93 @@
 											<td>{{order.comments}}</td>
 										{{/if}}								
 									</tr>
-									<tr  title="Språk i formulär">
-										<th>Språk i formulär: </th>
+									<tr  title="Språkval i formulär">
+										<th>Språkval i formulär: </th>
 										{{#if isEditingGlobalOrder}}
 											<td>{{input classNames="form-control" type="text" value=order.formLang}}</td>
 										{{else}}
 											<td>{{order.formLang}}</td>
 										{{/if}}			
+									</tr>
+									<tr  title="Företag, leveransuppgifter">
+										<th>Företag, leveransuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryCompany}}</td>
+										{{else}}
+											<td>{{order.deliveryCompany}}</td>
+										{{/if}}							
+									</tr>
+									<tr  title="Namn, leveransuppgifter">
+										<th>Namn, leveransuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryName}}</td>
+										{{else}}
+											<td>{{order.deliveryName}}</td>
+										{{/if}}							
+									</tr>									
+									<tr  title="Gatuadress/Box, leveransuppgifter">
+										<th>Gatuadress/Box, leveransuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryAddress}}</td>
+										{{else}}
+											<td>{{order.deliveryAddress}}</td>
+										{{/if}}		
+									</tr>
+									<tr  title="Postnummer, leveransuppgifter">
+										<th>Postnummer, leveransuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryPostalCode}}</td>
+										{{else}}
+											<td>{{order.deliveryPostalCode}}</td>
+										{{/if}}								
+									</tr>
+									<tr   title="Ort, leveransuppgifter">
+										<th>Ort, leveransuppgifter</th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryCity}}</td>
+										{{else}}
+											<td>{{order.deliveryCity}}</td>
+										{{/if}}								
+									</tr>
+									<tr  title="Namn, faktureringsuppgifter">
+										<th>Namn, faktureringsuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
+										{{else}}
+											<td>{{order.invoicingName}}</td>
+										{{/if}}							
+									</tr>
+									<tr  title="Företag, faktureringsuppgifter">
+										<th>Företag, faktureringsuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingCompany}}</td>
+										{{else}}
+											<td>{{order.invoicingCompany}}</td>
+										{{/if}}							
+									</tr>										
+									<tr  title="Gatuadress/Box, faktureringsuppgifter">
+										<th>Gatuadress/Box, faktureringsuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingAddress}}</td>
+										{{else}}
+											<td>{{order.invoicingAddress}}</td>
+										{{/if}}		
+									</tr>
+									<tr  title="Postnummer, faktureringsuppgifter">
+										<th>Postnummer, faktureringsuppgifter: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress1}}</td>
+										{{else}}
+											<td>{{order.invoicingPostalAddress1}}</td>
+										{{/if}}								
+									</tr>
+									<tr   title="Ort, faktureringsuppgifter">
+										<th>Ort, faktureringsuppgifter</th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress2}}</td>
+										{{else}}
+											<td>{{order.invoicingPostalAddress2}}</td>
+										{{/if}}								
 									</tr>
 									<tr  title="Ansvarsnummer och beställarid">
 										<th>Ansvarsnummer och beställarid: </th>
@@ -447,38 +535,6 @@
 										{{else}}
 											<td>{{order.invoicingId}}</td>
 										{{/if}}		
-									</tr>
-									<tr  title="Namn, faktura">
-										<th>Namn, faktura: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingName}}</td>
-										{{else}}
-											<td>{{order.invoicingName}}</td>
-										{{/if}}							
-									</tr>
-									<tr  title="Adress, faktura">
-										<th>Adress, faktura: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingAddress}}</td>
-										{{else}}
-											<td>{{order.invoicingAddress}}</td>
-										{{/if}}		
-									</tr>
-									<tr  title="Postadress 1, faktura">
-										<th>Postadress, faktura: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress1}}</td>
-										{{else}}
-											<td>{{order.invoicingPostalAddress1}}</td>
-										{{/if}}								
-									</tr>
-									<tr   title="Postadress 2, faktura">
-										<th></th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.invoicingPostalAddress2}}</td>
-										{{else}}
-											<td>{{order.invoicingPostalAddress2}}</td>
-										{{/if}}								
 									</tr>
 								</table>
 							</div> <!-- end panel -->
