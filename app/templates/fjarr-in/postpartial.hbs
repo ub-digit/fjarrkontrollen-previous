@@ -270,6 +270,27 @@
 										</td>
 
 									</tr>
+									<tr  title="Period">
+										<th>Period: </th>
+										<td>
+											{{#if isEditingGlobalOrder}}
+												{{input classNames="form-control" type="text" value=order.period}}
+											{{else}}
+												{{order.period}}
+											{{/if}}
+										</td>
+									</tr>
+									<tr  title="Publikationstyp">
+										<th>Publikationstyp: </th>
+										<td>
+											{{#if isEditingGlobalOrder}}
+												{{input classNames="form-control" type="text" value=order.publicationType}}
+											{{else}}
+												{{order.publicationType}}
+											{{/if}}
+										</td>
+									</tr>
+
 									<tr  title="Beställningstyp">
 										<th>Beställningstyp: </th>
 										<td>
