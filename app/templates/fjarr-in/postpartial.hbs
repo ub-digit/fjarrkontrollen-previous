@@ -295,7 +295,7 @@
 										<th>Beställningstyp: </th>
 										<td>
 											{{#if isEditingGlobalOrder}}
-												{{view Ember.Select classNames="form-control" content=typeOfOrder optionValuePath="content.value" optionLabelPath="content.label" value=order.orderTypeId}}
+												{{view Ember.Select classNames="form-control" content=controllers.application.ordertypes optionValuePath="content.id" optionLabelPath="content.nameSv" value=order.orderTypeId}}
 											{{else}}
 												{{ordertype-name order.orderTypeId}}
 											{{/if}}

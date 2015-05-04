@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 		search_term: '',
 		currentLocation: 1,
 		status_group: 1,
-		mediaType: [1,2],
+		mediaType: 0,
 		user: null,
 		sortfield: 'order_number',
 		sortdir: 'DESC',
@@ -28,20 +28,6 @@ export default Ember.Controller.extend({
 		page: 1
 	},
 	currentPage: 1, 
-	/* filter for interface */
-	// loan
-	loan: {
-		active: true,
-		disabled: false,
-		name: 'Lån',
-		id: 2
-	},
-	copy: {
-		active: true,
-		disabled: false,
-		name: 'Kopia',
-		id: 1
-	},
 
 	user: {
 		active:false,
@@ -91,34 +77,12 @@ export default Ember.Controller.extend({
 
 
 
-
-	updateDisabledStatusOnOrderType: function() {
-		if (this.get('loan.active') && (this.get('copy.active'))) {
-			this.set('loan.disabled', false);
-			this.set('copy.disabled', false);
-		}
-		else if (!this.get('loan.active') && (this.get('copy.active'))) {
-			this.set("copy.disabled", true);
-			this.set("loan.disabled", false);
-		}
-		else if (!this.get("copy.active") && (this.get("loan.active"))) {
-			this.set("loan.disabled", true);
-			this.set("copy.disabled", false);
-		}
-	}.observes('loan.active', 'copy.active'),
-
 	triggerFilter : function() {
-		this.filterToServer.mediaType = [];
-		if (this.get("loan.active")) {
-			this.filterToServer.mediaType.push(this.get("loan.id"));
+		if (this.currentStatus === '0') {
+			this.set("filterToServer.mediaType", "");
 		}
 		else {
-			var index = this.filterToServer.mediaType.indexOf(this.get("loan.id"));
-			this.filterToServer.mediaType.splice(index,1);
-		}
-
-		if (this.get("copy.active")) {
-			this.filterToServer.mediaType.push(this.get("copy.id"));
+			this.set("filterToServer.mediaType", this.get('currentOrderType'));
 		}
 
 		if (this.currentLocation) {
@@ -171,7 +135,7 @@ export default Ember.Controller.extend({
 
 		this.transitionToRoute("fjarr-in.index");
 	//	console.log("search_term: " + this.filterToServer.search_term + " currentLocation: " + this.filterToServer.currentLocation + " mediatypes: " + this.filterToServer.mediaType + " user: " + this.filterToServer.user + "status_group: " + this.filterToServer.status_group + " sortOrder: " + this.sortOrder);
-	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady','loan.active', 'currentLocation', 'copy.active', 'currentStatusGroup', 'sortOrder', 'currentLocationSource', 'currentArchivedFilter', 'currentToBeInvoicedFilter'),
+	}.observes('sortCols.@each.active', 'sortCols.@each.sortDir', 'folder.@each.active','user.active','queryReady', 'currentLocation', 'currentOrderType', 'currentStatusGroup', 'sortOrder', 'currentLocationSource', 'currentArchivedFilter', 'currentToBeInvoicedFilter'),
 	
 
 	convertFilterVars: function() {

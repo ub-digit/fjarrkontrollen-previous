@@ -17,18 +17,12 @@
 						<div class="clear-me" {{action 'clearSearch'}}><i class="fa fa-times-circle"></i></div>
 					</div>
 				</div>
-				<div class="col-xs-6 padding-top-25">
-					<form  id="media-type-filter" class="form " role="form" class="form-inline">
-						<label>
-							{{loan.name}}
-							{{view Ember.Checkbox disabled=loan.disabled checked=loan.active}}
-						</label>
+				<div class="col-xs-2">
+				<label>Beställningstyp</label>
+					{{view Ember.Select classNames="form-control" content=controllers.application.ordertypes optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentOrderType}}
+				</div>
+				<div class="col-xs-4 padding-top-25">
 
-						<label>
-							{{copy.name}}
-							{{view Ember.Checkbox disabled=copy.disabled checked=copy.active}}
-						</label>
-					</form>
 					<form  id="owner-filter" class="form form-inline" role="form">
 						<label>
 							Mina ordrar

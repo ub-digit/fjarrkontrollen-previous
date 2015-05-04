@@ -159,17 +159,6 @@ export default Ember.Controller.extend(Ember.Evented, {
 		}
 	],
 
-	typeOfOrder: [
-		{
-			value: "1",
-			label: "Kopia",
-		},
-		{
-			value: "2",
-			label: "Lån"
-		}
-	],
-
 	init: function() {
 		this.on("updateHistory", this.getCurrentHistory);
 
