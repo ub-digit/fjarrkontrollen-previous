@@ -78,16 +78,9 @@ export default Ember.Controller.extend({
 
 
 	triggerFilter : function() {
-		if (this.currentStatus === '0') {
-			this.set("filterToServer.mediaType", "");
-		}
-		else {
-			this.set("filterToServer.mediaType", this.get('currentOrderType'));
-		}
+		this.set("filterToServer.mediaType", this.get('currentOrderType'));
 
-		if (this.currentLocation) {
-			this.set("filterToServer.currentLocation",this.currentLocation);
-		}
+		this.set("filterToServer.currentLocation",this.get('currentLocation'));
 		
 		if (this.currentStatus === '0') {
 			this.set("filterToServer.status_group", "");
@@ -144,9 +137,6 @@ export default Ember.Controller.extend({
 			this.set("filterToServer.status_group", null);
 		}
 
-		if (this.get("filterToServer.currentLocation") === 0) {
-			this.set("filterToServer.currentLocation", null);
-		}
 	},
 
 
@@ -170,8 +160,6 @@ export default Ember.Controller.extend({
 		resetFilter: function() {
 			this.set("currentLocation", this.controllerFor('application').get("defaultLocation"));
 			this.set("currentStatusGroup", this.controllerFor('application').get("defaultStatusGroup"));
-			this.set("loan.active", true);
-			this.set("copy.active", true);
 			this.set("user.active", false);
 			this.set("currentArchivedFilter", false);
 			this.set("currentToBeInvoicedFilter", null);

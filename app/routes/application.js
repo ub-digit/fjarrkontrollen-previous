@@ -16,7 +16,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	},
 
 	setupController: function(controller, models) {
-
 		controller.set('defaultStatusGroup', 'all');
 		controller.set('locations', models.locations);
 		controller.set('statuses', models.statuses);
