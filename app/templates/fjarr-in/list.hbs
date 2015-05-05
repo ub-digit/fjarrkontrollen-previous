@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-xs-2">
 					<label>Bibliotek</label>
-					{{view Ember.Select classNames="form-control" content=controllers.application.locations optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentLocation}}
+					{{view Ember.Select classNames="form-control" content=controllers.application.locationsWithAll optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentLocation}}
 				</div>
 				<div class="col-xs-2">
 				<label>Statusgrupp</label>
@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-xs-2">
 				<label>Beställningstyp</label>
-					{{view Ember.Select classNames="form-control" content=controllers.application.ordertypes optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentOrderType}}
+					{{view Ember.Select classNames="form-control" content=controllers.application.orderTypesWithAll optionValuePath="content.id" optionLabelPath="content.nameSv" value=currentOrderType}}
 				</div>
 				<div class="col-xs-4 padding-top-25">
 

@@ -7,6 +7,23 @@ export default Ember.Controller.extend({
 	orderNumber: '',
 	error: '',
 
+    orderTypesWithAll: function() {
+    	var newList = Ember.A();
+        newList.pushObject({id: 0, label: 'all', nameSv: 'Alla beställningstyper', nameEn: 'All Order Types'});
+    	this.get('ordertypes').forEach(function (item) {
+    		newList.pushObject(item);
+    	});
+      return newList;
+    }.property('ordertypes'),
+
+    locationsWithAll: function() {
+    	var newList = Ember.A();
+        newList.pushObject({id: 0, label: 'all', nameSv: 'Alla bibliotek', nameEn: 'All Libraries'});
+    	this.get('locations').forEach(function (item) {
+    		newList.pushObject(item);
+    	});
+      return newList;
+    }.property('locations'),
 
 	isEnabled: function() {
 		if (this.get("orderNumber").length === 0) {
