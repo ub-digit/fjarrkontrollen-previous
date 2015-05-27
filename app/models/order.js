@@ -59,6 +59,6 @@ export default DS.Model.extend({
 	loanPeriod						    : 		DS.attr('string'),
 	price							    : 		DS.attr('number'),
 	toBeInvoiced					    : 		DS.attr('boolean'),
-	publication_type					: 		DS.attr('string'),
+	publicationType 					: 		DS.attr('string'),
 	period								: 		DS.attr('string')
 });
