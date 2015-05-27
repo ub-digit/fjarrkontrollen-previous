@@ -451,22 +451,6 @@
 									</div>
 								</div>								
 								<table class="table table-striped">
-									<tr  title="Företag">
-										<th>Företag: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.deliveryCompany}}</td>
-										{{else}}
-											<td>{{order.deliveryCompany}}</td>
-										{{/if}}							
-									</tr>
-									<tr  title="Namn">
-										<th>Namn: </th>
-										{{#if isEditingGlobalOrder}}
-											<td>{{input classNames="form-control" type="text" value=order.deliveryName}}</td>
-										{{else}}
-											<td>{{order.deliveryName}}</td>
-										{{/if}}							
-									</tr>									
 									<tr  title="Gatuadress/Box">
 										<th>Gatuadress/Box: </th>
 										{{#if isEditingGlobalOrder}}
@@ -490,6 +474,22 @@
 										{{else}}
 											<td>{{order.deliveryCity}}</td>
 										{{/if}}								
+									</tr>
+									<tr  title="Box">
+										<th>Box: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryBox}}</td>
+										{{else}}
+											<td>{{order.deliveryBox}}</td>
+										{{/if}}		
+									</tr>
+									<tr  title="Kommentar">
+										<th>Kommentar: </th>
+										{{#if isEditingGlobalOrder}}
+											<td>{{input classNames="form-control" type="text" value=order.deliveryComments}}</td>
+										{{else}}
+											<td>{{order.deliveryComments}}</td>
+										{{/if}}		
 									</tr>
 								</table>
 								<div class="row">
