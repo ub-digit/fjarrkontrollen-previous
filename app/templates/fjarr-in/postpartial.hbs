@@ -220,8 +220,8 @@
 											{{/if}}
 										</td>
 									</tr>
-									<tr  title="Tidskriftstitel">
-										<th>Tidskriftstitel: </th>
+									<tr  title="Titel - tidskrift/bok">
+										<th>Titel - tidskrift/bok: </th>
 										<td>
 											{{#if isEditingGlobalOrder}}
 												{{input classNames="form-control" type="text" value=order.journalTitle}}
@@ -311,20 +311,6 @@
 												{{input classNames="form-control" type="text" value=order.deliveryPlace}}
 											{{else}}
 												{{order.deliveryPlace}}
-											{{/if}}
-										</td>
-									</tr>
-									<tr  title="Kopior om ej lån">
-										<th>Kopior om ej lån: </th>
-										<td>
-											{{#if isEditingGlobalOrder}}
-												{{view Ember.Select classNames="form-control" content=photocopiesIfLoanNotPossible optionValuePath="content.value" optionLabelPath="content.label" value=order.photocopiesIfLoanNotPossible}}
-											{{else}}
-												{{#if order.photocopiesIfLoanNotPossible}}
-													<i class="fa fa-check"></i>
-												{{else}}
-													<i class="fa fa-times"></i>
-												{{/if}}
 											{{/if}}
 										</td>
 									</tr>

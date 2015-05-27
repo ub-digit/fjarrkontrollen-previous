@@ -126,28 +126,6 @@ export default Ember.Controller.extend(Ember.Evented, {
 	},
 	selectedAnswer: null,
 
-	photocopiesIfLoanNotPossible: [
-		{	
-			value: true,
-			label: "ja"
-		},
-		{	
-			value: false,
-			label: "nej"
-		}
-	],
-
-	emailConfirmation: [
-		{	
-			value: true,
-			label: "ja"
-		},
-		{	
-			value: false,
-			label: "nej"
-		}
-	],
-
 	orderOutsideScandinavia: [
 		{	
 			value: true,
